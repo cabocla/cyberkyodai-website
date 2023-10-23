@@ -1,0 +1,78 @@
+.cyberFrame {
+  /* background-color: yellow; */
+  clip-path: polygon(
+    100% 5%,
+    98% 0%,
+    80% 0%,
+    78% 5%,
+    32% 5%,
+    30% 0%,
+    15% 0%,
+    0% 20%,
+    0% 100%,
+    90% 100%,
+    100% 85%
+  );
+  /* margin-bottom: 2.5rem; */
+  height: 100%;
+  width: 100%;
+}
+
+.cyberFrame div {
+  clip-path: polygon(100% 0%, 10% 0%, 0% 15%, 0% 100%, 90% 100%, 100% 85%);
+  /* height: 88%;
+  width: 95%; */
+  -ms-transform: translateY(-50%);
+  transform: translateY(-4%);
+  /* margin-bottom: 2.5%; */
+}
+.cyberFrameRev {
+  /* background-color: yellow; */
+  clip-path: polygon(
+    0% 5%,
+    2% 0%,
+    20% 0%,
+    22% 5%,
+    68% 5%,
+    70% 0%,
+    85% 0%,
+    100% 20%,
+    100% 100%,
+    10% 100%,
+    0% 85%
+  );
+  /* margin-bottom: 2.5rem; */
+  height: 100%;
+  width: 100%;
+}
+.cyberFrameRev div {
+  clip-path: polygon(0% 0%, 90% 0%, 100% 15%, 100% 100%, 10% 100%, 0% 85%);
+  /* height: 88%;
+  width: 95%; */
+  -ms-transform: translateY(-50%);
+  transform: translateY(-4%);
+  /* margin-bottom: 2.5%; */
+}
+
+/*
+@media (max-width: 1028px) {
+  .cyberFrame {
+    width: 90%;
+    height: 100%;
+    margin: 2.5rem;
+    margin-bottom: 0;
+  }
+  .cyberFrameRev {
+    width: 90%;
+    height: 100%;
+    margin: 2.5rem;
+    margin-bottom: 0;
+  }
+
+  .cyberFrame div {
+    transform: translateY(-3%);
+  }
+  .cyberFrameRev div {
+    transform: translateY(-3%);
+  }
+}*/

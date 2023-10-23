@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "PachinkoParlor",
+  "sourceName": "contracts/polygon/PachinkoParlor.sol",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220542f64cafb803bd337e1449bb37bf1c254ee76286ba31e134b150311be94dd8864736f6c63430008120033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220542f64cafb803bd337e1449bb37bf1c254ee76286ba31e134b150311be94dd8864736f6c63430008120033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

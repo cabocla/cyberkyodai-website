@@ -1,0 +1,7 @@
+.glitch-image {
+    animation: glitch-effect 1s alternate forwards
+}
+
+@keyframes glitch-effect {
+    
+}

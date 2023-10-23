@@ -1,0 +1,15 @@
+.mintDialog {
+  --aug-tr: 25px;
+  --aug-tl: 25px;
+  --aug-br: 25px;
+  --aug-bl: 25px;
+  --aug-b-extend1: 50%;
+  --aug-inlay-bg: rgba(255, 0, 0, 0.5);
+
+  /* --aug-border-all: 7px; */
+  /* --aug-border-bg: radial-gradient(at top, gold 25%, transparent 50%); */
+
+  /* --aug-inlay-all: 4px; */
+  /* --aug-inlay-bg: radial-gradient(gold, black); */
+  /* --aug-inlay-opacity: 0.5; */
+}

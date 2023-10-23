@@ -1,0 +1,222 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "CyberClan",
+  "sourceName": "contracts/polygon/CyberClan.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "BASE_CREATE_COST",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "PCT_DEN",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "clanAllegiances",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "clans",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "clanName",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint8",
+          "name": "alliance",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint8",
+          "name": "clanLevel",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint8",
+          "name": "acceptance",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint8",
+          "name": "kumichoShare",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint8",
+          "name": "wakagashiraShare",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "allegiance",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "kumicho",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "officers",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "newMembers",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "createClan",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_memberId",
+          "type": "uint256"
+        }
+      ],
+      "name": "distributeToken",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "newMembers",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "inviteToClan",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "clanAddress",
+          "type": "address"
+        }
+      ],
+      "name": "joinClan",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "leaveOrDisbandClan",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "members",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "clanAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "enum CyberClan.Rank",
+          "name": "rank",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "kumichoId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "newOfficers",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "upgradeClan",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b506104de806100206000396000f3fe608060405234801561001057600080fd5b50600436106100a95760003560e01c806345643a5a1161007157806345643a5a1461019d5780635daf08ca146101b057806384fcbce3146101f3578063ad87e72e14610205578063d7f8ffa614610213578063ed71388f1461021c57600080fd5b8063064121d4146100ae5780631292c29a146100ca5780631950e441146101545780632478fb4e1461016c5780632fa443cd1461018c575b600080fd5b6100b76101f481565b6040519081526020015b60405180910390f35b61011c6100d83660046102a2565b6001602081905260009182526040909120805491015460ff808216916101008104821691620100008204811691630100000081048216916401000000009091041686565b6040805196875260ff9586166020880152938516938601939093529083166060850152821660808401521660a082015260c0016100c1565b61016a61016236600461031e565b505050505050565b005b6100b761017a3660046103b0565b60006020819052908152604090205481565b61016a61019a3660046102a2565b50565b61016a6101ab3660046103b0565b61022f565b6101e56101be3660046103b0565b6002602052600090815260409020546001600160a01b03811690600160a01b900460ff1682565b6040516100c19291906103df565b61016a61020136600461041a565b5050565b61016a61019a3660046103b0565b6100b761271081565b61016a61022a36600461045c565b505050565b6002600082815260026020819052604090912054600160a01b900460ff169081111561025d5761025d6103c9565b0361019a5760405162461bcd60e51b8152602060048201526011602482015270696e73756666696369656e742072616e6b60781b604482015260640160405180910390fd5b6000602082840312156102b457600080fd5b81356001600160a01b03811681146102cb57600080fd5b9392505050565b60008083601f8401126102e457600080fd5b50813567ffffffffffffffff8111156102fc57600080fd5b6020830191508360208260051b850101111561031757600080fd5b9250929050565b6000806000806000806080878903121561033757600080fd5b863560ff8116811461034857600080fd5b955060208701359450604087013567ffffffffffffffff8082111561036c57600080fd5b6103788a838b016102d2565b9096509450606089013591508082111561039157600080fd5b5061039e89828a016102d2565b979a9699509497509295939492505050565b6000602082840312156103c257600080fd5b5035919050565b634e487b7160e01b600052602160045260246000fd5b6001600160a01b0383168152604081016003831061040d57634e487b7160e01b600052602160045260246000fd5b8260208301529392505050565b6000806020838503121561042d57600080fd5b823567ffffffffffffffff81111561044457600080fd5b610450858286016102d2565b90969095509350505050565b60008060006040848603121561047157600080fd5b83359250602084013567ffffffffffffffff81111561048f57600080fd5b61049b868287016102d2565b949790965093945050505056fea264697066735822122044fd43fbfecae8c1f7da083d63dab793ecfb2037e97c421232675f38ee676ec764736f6c63430008120033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100a95760003560e01c806345643a5a1161007157806345643a5a1461019d5780635daf08ca146101b057806384fcbce3146101f3578063ad87e72e14610205578063d7f8ffa614610213578063ed71388f1461021c57600080fd5b8063064121d4146100ae5780631292c29a146100ca5780631950e441146101545780632478fb4e1461016c5780632fa443cd1461018c575b600080fd5b6100b76101f481565b6040519081526020015b60405180910390f35b61011c6100d83660046102a2565b6001602081905260009182526040909120805491015460ff808216916101008104821691620100008204811691630100000081048216916401000000009091041686565b6040805196875260ff9586166020880152938516938601939093529083166060850152821660808401521660a082015260c0016100c1565b61016a61016236600461031e565b505050505050565b005b6100b761017a3660046103b0565b60006020819052908152604090205481565b61016a61019a3660046102a2565b50565b61016a6101ab3660046103b0565b61022f565b6101e56101be3660046103b0565b6002602052600090815260409020546001600160a01b03811690600160a01b900460ff1682565b6040516100c19291906103df565b61016a61020136600461041a565b5050565b61016a61019a3660046103b0565b6100b761271081565b61016a61022a36600461045c565b505050565b6002600082815260026020819052604090912054600160a01b900460ff169081111561025d5761025d6103c9565b0361019a5760405162461bcd60e51b8152602060048201526011602482015270696e73756666696369656e742072616e6b60781b604482015260640160405180910390fd5b6000602082840312156102b457600080fd5b81356001600160a01b03811681146102cb57600080fd5b9392505050565b60008083601f8401126102e457600080fd5b50813567ffffffffffffffff8111156102fc57600080fd5b6020830191508360208260051b850101111561031757600080fd5b9250929050565b6000806000806000806080878903121561033757600080fd5b863560ff8116811461034857600080fd5b955060208701359450604087013567ffffffffffffffff8082111561036c57600080fd5b6103788a838b016102d2565b9096509450606089013591508082111561039157600080fd5b5061039e89828a016102d2565b979a9699509497509295939492505050565b6000602082840312156103c257600080fd5b5035919050565b634e487b7160e01b600052602160045260246000fd5b6001600160a01b0383168152604081016003831061040d57634e487b7160e01b600052602160045260246000fd5b8260208301529392505050565b6000806020838503121561042d57600080fd5b823567ffffffffffffffff81111561044457600080fd5b610450858286016102d2565b90969095509350505050565b60008060006040848603121561047157600080fd5b83359250602084013567ffffffffffffffff81111561048f57600080fd5b61049b868287016102d2565b949790965093945050505056fea264697066735822122044fd43fbfecae8c1f7da083d63dab793ecfb2037e97c421232675f38ee676ec764736f6c63430008120033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

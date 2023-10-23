@@ -1,0 +1,59 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "ITraitGenPoly",
+  "sourceName": "contracts/interfaces/Interfaces.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_alliance",
+          "type": "uint256"
+        }
+      ],
+      "name": "genKyodaiHash",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "traitHash",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_alliance",
+          "type": "uint256"
+        }
+      ],
+      "name": "genShateiHash",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "traitHash",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

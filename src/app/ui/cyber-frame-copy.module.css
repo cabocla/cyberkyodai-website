@@ -1,0 +1,28 @@
+.cyberFrame {
+  --aug-t-extend1: 50%;
+  --aug-br: 50px;
+  --aug-tl: 50px;
+  /* --aug-tr-inset2: 10%; */
+  /* --aug-tl-inset2: 10%; */
+}
+
+.cyberFrameRev {
+  --aug-t-extend1: 50%;
+  --aug-bl: 50px;
+  --aug-tr: 50px;
+  /* --aug-tr-inset2: 10%; */
+  /* --aug-tl-inset2: 10%; */
+}
+
+@media (max-width: 640px) {
+  .cyberFrame {
+    --aug-t-extend1: 40%;
+    --aug-br: 30px;
+    --aug-tl: 30px;
+  }
+  .cyberFrameRev {
+    --aug-t-extend1: 40%;
+    --aug-bl: 30px;
+    --aug-tr: 30px;
+  }
+}

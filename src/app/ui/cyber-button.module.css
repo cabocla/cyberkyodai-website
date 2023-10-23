@@ -1,0 +1,43 @@
+/* body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: "Cyber", sans-serif;
+  background: linear-gradient(90deg, #f5ed00 60%, #e6de00 60%), #fff700;
+} */
+
+.cyberButton {
+  --primary: hsl(
+    var(--primary-hue),
+    85%,
+    calc(var(--primary-lightness, 50) * 1%)
+  );
+  /* --shadow-primary: hsl(var(--shadow-primary-hue), 90%, 50%); */
+  --primary-hue: 0;
+  --primary-lightness: 50;
+  --color: hsl(0, 0%, 100%);
+  /* --font-size: 26px; */
+  /* --shadow-primary-hue: 180; */
+  /* font-family: "Cyber", sans-serif; */
+  color: var(--color);
+  text-transform: uppercase;
+  background: var(--primary);
+  font-size: var(--font-size);
+  outline: transparent;
+  /* letter-spacing: 2px;
+  font-weight: 700; */
+  border: 0;
+  min-width: 120px;
+  max-width: 200px;
+  padding: 32px 64px;
+  box-shadow: inset -3px 0 0 var(--shadow-primary);
+  clip-path: polygon(0% 0%, 90% 0%, 100% 30%, 100% 100%, 10% 100%, 0% 70%);
+}
+
+@media screen {
+  .cyberButton {
+    padding: 10px 20px;
+  }
+}
