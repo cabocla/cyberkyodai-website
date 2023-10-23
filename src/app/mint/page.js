@@ -15,8 +15,7 @@ import CyberButton from "../ui/cyber-button.js";
 import { useGlitch } from "react-powerglitch";
 import Image from "next/image.js";
 import metamaskLogo from "../../../public/metamask-logo.svg";
-
-let Web3 = require("web3");
+import Web3 from "web3";
 
 function MintPage() {
   const [clan, setClan] = useState(null);
