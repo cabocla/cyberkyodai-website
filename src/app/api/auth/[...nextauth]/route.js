@@ -6,6 +6,7 @@ import { SiweMessage } from "siwe";
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
 export async function GET(req, res) {
+  console.log("next auth called");
   const providers = [
     CredentialsProvider({
       name: "Ethereum",
@@ -27,13 +28,13 @@ export async function GET(req, res) {
             JSON.parse(credentials?.message || "{}")
           );
           const nextAuthUrl = new URL(process.env.NEXTAUTH_URL);
-
+          const csrfToken = await getCsrfToken({ req });
           const result = await siwe.verify({
             signature: credentials?.signature || "",
             domain: nextAuthUrl.host,
-            nonce: await getCsrfToken({ req }),
+            nonce: csrfToken,
           });
-
+          console.log(result);
           if (result.success) {
             return {
               id: siwe.address,
@@ -48,27 +49,35 @@ export async function GET(req, res) {
   ];
 
   const isDefaultSigninPage =
-    req.method === "GET" && req.query.nextauth.includes("signin");
-
+    req.method === "GET" && req.nextUrl.searchParams.get("signin");
   // Hide Sign-In with Ethereum from default sign page
   if (isDefaultSigninPage) {
     providers.pop();
   }
-
-  return await NextAuth(req, res, {
-    // https://next-auth.js.org/configuration/providers/oauth
-    providers,
-    session: {
-      strategy: "jwt",
-    },
-    secret: process.env.NEXTAUTH_SECRET,
-    callbacks: {
-      async session({ session, token }) {
-        session.address = token.sub;
-        session.user.name = token.sub;
-        session.user.image = "https://www.fillmurray.com/128/128";
-        return session;
+  let nextAuth;
+  try {
+    console.log("getting next auth");
+    nextAuth = await NextAuth(req, res, {
+      // https://next-auth.js.org/configuration/providers/oauth
+      providers,
+      session: {
+        strategy: "jwt",
       },
-    },
-  });
+      secret: process.env.NEXTAUTH_SECRET,
+      callbacks: {
+        async session({ session, token }) {
+          session.address = token.sub;
+          session.user.name = token.sub;
+          // session.user.image = "https://www.fillmurray.com/128/128";
+          return session;
+        },
+      },
+    });
+    console.log("nextauth retrieved");
+    console.log(nextAuth);
+  } catch (e) {
+    console.log(e);
+  }
+
+  return nextAuth;
 }
