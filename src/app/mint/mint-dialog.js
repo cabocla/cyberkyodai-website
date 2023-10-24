@@ -54,7 +54,7 @@ const mintHandler = (web3, contract, address, clan) => {
 
   // let tx = {
   //   from: address,
-  //   to: process.env.KYODAI_GOERLI,
+  //   to: process.env.NEXT_PUBLIC_KYODAI_GOERLI,
   //   data: encoded,
   //   nonce: "0x00",
   //   value: web3.utils.numberToHex(_price),

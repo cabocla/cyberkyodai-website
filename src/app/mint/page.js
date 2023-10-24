@@ -91,9 +91,14 @@ function MintPage() {
       }
     }
 
-    let w3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA_RPC));
+    let w3 = new Web3(
+      new Web3.providers.HttpProvider(process.env.NEXT_PUBLIC_INFURA_RPC)
+    );
     setWeb3(w3);
-    let c = new w3.eth.Contract(cyberKyodai.abi, process.env.KYODAI_GOERLI);
+    let c = new w3.eth.Contract(
+      cyberKyodai.abi,
+      process.env.NEXT_PUBLIC_KYODAI_GOERLI
+    );
     setContract(c);
 
     window.ethereum
