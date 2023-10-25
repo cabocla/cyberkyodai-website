@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import nobu from "../../../public/assets/images/nobu84.webp";
@@ -6,6 +7,7 @@ import ryuichi from "../../../public/assets/images/ryuichi84.webp";
 import classes from "./mint-dialog.module.css";
 import "/node_modules/augmented-ui/augmented-ui.min.css";
 import { useGlitch } from "react-powerglitch";
+import { kyodaiApi, methods } from "../methods";
 
 const mintHandler = (web3, contract, address, clan) => {
   // const address = walletAddress[0];
@@ -73,7 +75,6 @@ const mintHandler = (web3, contract, address, clan) => {
   // return txHash;
 };
 function MintDialog(props) {
-  const contract = props.contract;
   const [ryuichiSupply, setRyuichiSupply] = useState(null);
   const [toraSupply, setToraSupply] = useState(null);
   const [nobuSupply, setNobuSupply] = useState(null);
@@ -107,42 +108,20 @@ function MintDialog(props) {
   const toraGlitch = useGlitch(glitchConfig);
   const nobuGlitch = useGlitch(glitchConfig);
   console.log("getting clans supply");
+  const getSupply = async () => {
+    console.log("getting alliance supply");
+    const res = await fetch(kyodaiApi + methods.allianceSupply);
+    const data = await res.json();
+    // const data = JSON.parse(res);
+    // console.log(JSON.parse(res.data));
+    let supply = data.data.allianceSupply;
+    setRyuichiSupply(1111 - supply.ryuSupply);
+    setToraSupply(1111 - supply.toraSupply);
+    setNobuSupply(1111 - supply.nobuSupply);
+  };
   useEffect(() => {
-    console.log("contract: " + contract);
-    if (contract) {
-      console.log("getting ryuichi clan supply");
-      contract.methods
-        .allianceSupply(0)
-        .call()
-        .then((_supply) => {
-          console.log("get ryuichi clan supply");
-          setRyuichiSupply(1111 - _supply);
-        })
-        .catch((err) => console.log(err));
-
-      console.log("getting tora clan supply");
-      contract.methods
-        .allianceSupply(1)
-        .call()
-        .then((_supply) => {
-          console.log("get tora clan supply");
-          setToraSupply(1111 - _supply);
-        })
-        .catch((err) => console.log(err));
-
-      console.log("getting nobu clan supply");
-      contract.methods
-        .allianceSupply(2)
-        .call()
-        .then((_supply) => {
-          console.log("get nobu clan supply");
-          setNobuSupply(1111 - _supply);
-        })
-        .catch((err) => console.log(err));
-    } else {
-      console.log("contract not exist");
-    }
-  });
+    getSupply();
+  }, [ryuichiSupply, toraSupply, nobuSupply]);
 
   const clans = [
     {
@@ -223,6 +202,7 @@ function MintDialog(props) {
                   <Image
                     // width={200}
                     // height={200}
+                    sizes="(max-width: 768px) 100vw"
                     fill={true}
                     style={{ objectFit: "contain" }}
                     ref={clan.glitchRef}
@@ -241,4 +221,12 @@ function MintDialog(props) {
   );
 }
 
+// export const getServerSideProps = async (context) => {
+//   console.log("getting alliance supply");
+//   const res = await fetch("/api/contracts/kyodai/alliance-supply");
+//   const data = res.json();
+//   // const data = JSON.parse(res);
+//   console.log(JSON.parse(res.data));
+//   let supply = data.data.allianceSupply;
+// };
 export default MintDialog;
