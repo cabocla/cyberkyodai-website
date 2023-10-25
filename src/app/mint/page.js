@@ -6,8 +6,6 @@ import {
   checkWhitelist,
 } from "../api/merkle-tree-whitelist.js";
 import cyberKyodai from "../../../public/contracts/contracts/mainnet/CyberKyodai.sol/CyberKyodai.json";
-import Link from "next/link.js";
-// import CyberFrame from "../ui/cyber-frame.js";
 import CyberFrame from "../ui/cyber-frame-copy.js";
 import "./mint-dialog.js";
 import MintDialog from "./mint-dialog.js";
@@ -16,11 +14,13 @@ import { useGlitch } from "react-powerglitch";
 import Image from "next/image.js";
 import metamaskLogo from "../../../public/metamask-logo.svg";
 import { Web3 } from "web3";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function MintPage() {
   const [clan, setClan] = useState(null);
-  const [web3, setWeb3] = useState(null);
-  const [contract, setContract] = useState(null);
+  // const [web3, setWeb3] = useState(null);
+  // const [contract, setContract] = useState(null);
   const [address, setAddress] = useState(null);
   const glitchConfig = {
     playMode: "always",
@@ -55,7 +55,9 @@ function MintPage() {
   const chooseClan = (_clan) => {
     setClan(_clan);
   };
+  console.log("mint page");
   useEffect(() => {
+    console.log("called use effect for glitch");
     if (address) {
       connectButtonGlitch.stopGlitch();
       mintButtonGlitch.startGlitch();
@@ -64,8 +66,10 @@ function MintPage() {
       mintButtonGlitch.stopGlitch();
       connectButtonGlitch.startGlitch();
     }
-  }, [address, connectButtonGlitch, mintButtonGlitch]);
+  }, [address]);
+
   useEffect(() => {
+    console.log("useEffect called in mint page");
     if (window.ethereum) {
       // window.ethereum.on("chainChanged", (chain) => {
       //   console.log(`chain changed to: ${chain}`);
@@ -91,10 +95,10 @@ function MintPage() {
       }
     }
 
-    let w3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA_RPC));
-    setWeb3(w3);
-    let c = new w3.eth.Contract(cyberKyodai.abi, process.env.KYODAI_GOERLI);
-    setContract(c);
+    // let w3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA_RPC));
+    // setWeb3(w3);
+    // let c = new w3.eth.Contract(cyberKyodai.abi, process.env.KYODAI_GOERLI);
+    // setContract(c);
 
     window.ethereum
       ? ethereum
@@ -112,7 +116,6 @@ function MintPage() {
       if (
         window.ethereum.networkVersion !== "5" // TODO change to 1 for mainnet
       ) {
-        // TODO modal open to ask for change network
         setModalOpen(true);
         console.log("not ethereum network please change");
       } else {
@@ -122,18 +125,11 @@ function MintPage() {
           });
           console.log(account);
           setAddress(account[0]);
-          // setWalletAddy(account);
-
-          // console.log(process.env.KYODAI_GOERLI);
-          // let c = new w3.eth.Contract(
-          //   cyberKyodai.abi,
-          //   process.env.KYODAI_GOERLI
-          // );
-          // setContract(c);
         } catch (e) {
           console.error(e);
           if (e.code === 4001) {
             // setModalOpen(true);
+            // toast
           }
         }
       }
@@ -155,7 +151,7 @@ function MintPage() {
     setModalOpen(false);
   };
 
-  const mintHandler = (walletAddress) => {
+  const mintHandler = async (walletAddress) => {
     // const address = walletAddress[0];
     // // request proof for wallet address
 
@@ -185,44 +181,101 @@ function MintPage() {
       setModalOpen(true);
       console.log("not ethereum network please change");
     } else {
-      contract.methods
-        .totalSupply()
-        .call()
-        .then((_supply) => {
-          console.log(_supply);
-        })
-        .catch((err) => console.log(err));
-      console.log(address);
-      // let _price = web3.utils.toWei("0.033");
-      // let encoded = contract.methods.publicMint(clan).encodeABI();
-
-      // let tx = {
-      //   from: address,
-      //   to: process.env.KYODAI_GOERLI,
-      //   data: encoded,
-      //   nonce: "0x00",
-      //   value: web3.utils.numberToHex(_price),
-      // };
-
-      // let txHash = ethereum
-      //   .request({
-      //     method: "eth_sendTransaction",
-      //     params: [tx],
-      //   })
-      //   .then((hash) => {
-      //     alert("You can now view your transaction with hash: " + hash);
+      // contract.methods
+      //   .totalSupply()
+      //   .call()
+      //   .then((_supply) => {
+      //     console.log(_supply);
       //   })
       //   .catch((err) => console.log(err));
+      // console.log(address);
+      if (!clan) {
+        // alert("Choose a clan to pledge your allegiance to!");
+        toast.warn("Choose a clan to pledge your allegiance to!");
+      } else {
+        const web3 = new Web3(
+          new Web3.providers.HttpProvider(process.env.INFURA_RPC)
+        );
+        const contract = new web3.eth.Contract(
+          cyberKyodai.abi,
+          process.env.KYODAI_GOERLI
+        );
+        let _price = web3.utils.toWei("0.033", "ether");
+        console.log("converted ether to wei");
+        let encoded = contract.methods.publicMint(clan).encodeABI();
+        let tx = {
+          from: address,
+          to: process.env.KYODAI_GOERLI,
+          data: encoded,
+          nonce: "0x00",
+          value: web3.utils.numberToHex(_price),
+        };
+        console.log("sending transaction");
+        let txHash = ethereum
+          .request({
+            method: "eth_sendTransaction",
+            params: [tx],
+          })
+          .then((hash) => {
+            alert("You can now view your transaction with hash: " + hash);
+          })
+          .catch((err) => console.log(err));
 
-      // return txHash;
+        getTxReceipt(txHash);
+      }
+    }
+  };
+  const getTxReceipt = async (txHash) => {
+    // TODO rotating sakazuki cup as loading indicator
+    const loadingToast = toast.loading("Drinking from sakazuki cup...");
+    const res = await awaitTx(txHash);
+    const data = await res.json();
+    const receipt = data.receipt;
+    if (receipt !== null) {
+      // Transaction went through
+      if (receipt.status === "0x0") {
+        toast.update(loadingToast, {
+          render: "Transaction failed! Please try again...",
+          type: "error",
+          isLoading: false,
+          autoClose: 3000,
+        });
+      } else {
+        toast.update(loadingToast, {
+          render: "All is good",
+          type: "success",
+          isLoading: false,
+          autoClose: 3000,
+        });
+      }
+      // TODO display minted kyodai
+    }
+  };
+
+  const awaitTx = async (txHash) => {
+    let receipt = await fetch("/api/tx?hash=" + txHash);
+    if (receipt !== null) {
+      // Transaction went through
+      return receipt;
+    } else {
+      // Try again in 3 second
+      window.setTimeout(function () {
+        awaitTx(txHash);
+      }, 3000);
     }
   };
 
   return (
     <main>
       <div className="flex h-[90vh] flex-col items-center justify-center bg-fuchsia-400">
-        <MintDialog changeClan={chooseClan} contract={contract} clan={clan} />
-
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          rtl={false}
+          theme="light"
+          hideProgressBar={true}
+        />
+        <MintDialog changeClan={chooseClan} clan={clan} />
         <div
           className={`${
             address ? "" : "hidden"
@@ -234,7 +287,7 @@ function MintPage() {
             data-augmented-ui=" tr-clip tl-clip"
             className=" flex  h-[5vh]  w-[35vw]  flex-col items-center justify-center bg-red-500 hover:bg-red-700 md:w-[20vw] lg:w-[15vw]"
             onClick={() => {
-              mintHandler(web3, contract, address, clan);
+              mintHandler(address);
             }}
           >
             Mint
@@ -250,52 +303,34 @@ function MintPage() {
             <div></div>
           )}
         </div>
-        <button
-          disabled={modalOpen ? true : false}
-          ref={connectButtonGlitch.ref}
+        <div
           className={`${
             address ? "hidden" : ""
-          } flex h-[5vh] w-[35vw] flex-col items-center justify-center bg-red-500 hover:bg-red-700 md:w-[20vw] lg:w-[15vw]`}
-          data-augmented-ui=" tr-clip tl-clip"
-          onClick={() => {
-            connectHandler();
-          }}
+          } flex  h-[12vh] w-[35vw] flex-col justify-between  md:w-[20vw] lg:w-[15vw]`}
         >
-          Connect wallet
-        </button>
-        {/* <div className={`${address ? "hidden" : ""}`}>
-          <CyberButton
-            glitchConfig={{
-              playMode: "always",
-              createContainers: true,
-              hideOverflow: false,
-              timing: {
-                duration: 4000,
-              },
-              glitchTimeSpan: {
-                start: 0.5,
-                end: 0.8,
-              },
-              shake: {
-                velocity: 15,
-                amplitudeX: 0.2,
-                amplitudeY: 0.2,
-              },
-              slice: {
-                count: 20,
-                velocity: 15,
-                minHeight: 0.02,
-                maxHeight: 0.15,
-                hueRotate: true,
-              },
-              pulse: false,
-            }}
-            title="Connect wallet"
+          <button
+            disabled={modalOpen ? true : false}
+            ref={connectButtonGlitch.ref}
+            className={`${
+              address ? "hidden" : ""
+            } flex h-[5vh] w-[35vw] flex-col items-center justify-center bg-red-500 hover:bg-red-700 md:w-[20vw] lg:w-[15vw]`}
+            data-augmented-ui=" tr-clip tl-clip"
             onClick={() => {
               connectHandler();
             }}
-          />
-        </div> */}
+          >
+            Connect wallet
+          </button>
+          {address ? (
+            <div className=" hidden h-[5vh] flex-row items-center justify-center ">
+              <div className="mx-2">
+                {`${address.substring(0, 6)}...${address.substring(38, 42)}`}
+              </div>
+            </div>
+          ) : (
+            <div></div>
+          )}
+        </div>
         {modalOpen ? (
           <div className="absolute h-[90vh] w-full bg-slate-600 bg-opacity-50">
             <div className=" absolute right-1/4 top-1/4  flex h-1/2 w-1/2 flex-col items-center justify-center lg:right-[37.5vw] lg:h-2/6  lg:w-1/4 ">
