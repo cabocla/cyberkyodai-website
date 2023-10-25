@@ -106,31 +106,41 @@ function MintDialog(props) {
   const ryuGlitch = useGlitch(glitchConfig);
   const toraGlitch = useGlitch(glitchConfig);
   const nobuGlitch = useGlitch(glitchConfig);
+  console.log("getting clans supply");
   useEffect(() => {
+    console.log("contract: " + contract);
     if (contract) {
+      console.log("getting ryuichi clan supply");
       contract.methods
         .allianceSupply(0)
         .call()
         .then((_supply) => {
+          console.log("get ryuichi clan supply");
           setRyuichiSupply(1111 - _supply);
         })
         .catch((err) => console.log(err));
 
+      console.log("getting tora clan supply");
       contract.methods
         .allianceSupply(1)
         .call()
         .then((_supply) => {
+          console.log("get tora clan supply");
           setToraSupply(1111 - _supply);
         })
         .catch((err) => console.log(err));
 
+      console.log("getting nobu clan supply");
       contract.methods
         .allianceSupply(2)
         .call()
         .then((_supply) => {
+          console.log("get nobu clan supply");
           setNobuSupply(1111 - _supply);
         })
         .catch((err) => console.log(err));
+    } else {
+      console.log("contract not exist");
     }
   });
 

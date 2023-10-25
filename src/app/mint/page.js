@@ -15,7 +15,7 @@ import CyberButton from "../ui/cyber-button.js";
 import { useGlitch } from "react-powerglitch";
 import Image from "next/image.js";
 import metamaskLogo from "../../../public/metamask-logo.svg";
-import Web3 from "web3";
+import { Web3 } from "web3";
 
 function MintPage() {
   const [clan, setClan] = useState(null);
@@ -91,14 +91,9 @@ function MintPage() {
       }
     }
 
-    let w3 = new Web3(
-      new Web3.providers.HttpProvider(process.env.NEXT_PUBLIC_INFURA_RPC)
-    );
+    let w3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA_RPC));
     setWeb3(w3);
-    let c = new w3.eth.Contract(
-      cyberKyodai.abi,
-      process.env.NEXT_PUBLIC_KYODAI_GOERLI
-    );
+    let c = new w3.eth.Contract(cyberKyodai.abi, process.env.KYODAI_GOERLI);
     setContract(c);
 
     window.ethereum
