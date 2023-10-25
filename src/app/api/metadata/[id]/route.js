@@ -1,5 +1,4 @@
 import attributeNames from "./attributes";
-import { useSearchParams } from "next/navigation";
 
 export async function GET(req) {
   const url = req.url.split("metadata/")[1];
