@@ -7,7 +7,7 @@ import ryuichi from "../../../public/assets/images/ryuichi84.webp";
 import classes from "./mint-dialog.module.css";
 import "/node_modules/augmented-ui/augmented-ui.min.css";
 import { useGlitch } from "react-powerglitch";
-import { kyodaiApi, methods } from "../methods";
+import { kyodaiApi, methods } from "../api/methods";
 
 const mintHandler = (web3, contract, address, clan) => {
   // const address = walletAddress[0];
