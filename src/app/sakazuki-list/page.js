@@ -133,11 +133,14 @@ function WalletChecker() {
                         }}
                       />
                     </div>
-                    <div
-                      data-augmented-ui="tr-clip bl-clip"
-                      className=" ml-5 flex  w-28 items-center justify-center bg-blue-300 "
-                    >
-                      <button type="submit">Check</button>
+                    <div>
+                      <button
+                        data-augmented-ui="tr-clip bl-clip"
+                        className=" ml-5 flex  w-28 items-center justify-center bg-blue-300"
+                        type="submit"
+                      >
+                        Check
+                      </button>
                     </div>
                   </form>
                 </div>
