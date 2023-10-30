@@ -1,10 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import {
-  getMerkleProof,
-  getMerkleRoot,
-  checkWhitelist,
-} from "../api/merkle-tree-whitelist.js";
 import cyberKyodai from "../../../public/contracts/contracts/mainnet/CyberKyodai.sol/CyberKyodai.json";
 import CyberFrame from "../ui/cyber-frame-copy.js";
 import "./mint-dialog.js";
@@ -16,12 +11,24 @@ import metamaskLogo from "../../../public/metamask-logo.svg";
 import { Web3 } from "web3";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import MintedTokenImage from "./minted-image.js";
 
 function MintPage() {
+  const web3 = new Web3(
+    new Web3.providers.HttpProvider(process.env.INFURA_RPC)
+  );
+  const contract = new web3.eth.Contract(
+    cyberKyodai.abi,
+    process.env.KYODAI_GOERLI
+  );
+  // let currentTxHash = window.localStorage.getItem("mint_tx_hash");
+  // let isLoading = window.localStorage.getItem("is_loading");
   const [clan, setClan] = useState(null);
-  // const [web3, setWeb3] = useState(null);
-  // const [contract, setContract] = useState(null);
   const [address, setAddress] = useState(null);
+  const [txComplete, setTxComplete] = useState(false);
+  const [txReceipt, setTxReceipt] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingToast, setLoadingToast] = useState(null);
   const glitchConfig = {
     playMode: "always",
     createContainers: true,
@@ -67,6 +74,12 @@ function MintPage() {
       connectButtonGlitch.startGlitch();
     }
   }, [address]);
+
+  // useEffect(() => {
+  //   if (currentTxHash !== null && !isLoading) {
+  //     getTxReceipt(currentTxHash);
+  //   }
+  // }, [currentTxHash, isLoading]);
 
   useEffect(() => {
     console.log("useEffect called in mint page");
@@ -181,25 +194,11 @@ function MintPage() {
       setModalOpen(true);
       console.log("not ethereum network please change");
     } else {
-      // contract.methods
-      //   .totalSupply()
-      //   .call()
-      //   .then((_supply) => {
-      //     console.log(_supply);
-      //   })
-      //   .catch((err) => console.log(err));
-      // console.log(address);
-      if (!clan) {
-        // alert("Choose a clan to pledge your allegiance to!");
+      if (clan === null) {
+        console.log(clan);
         toast.warn("Choose a clan to pledge your allegiance to!");
       } else {
-        const web3 = new Web3(
-          new Web3.providers.HttpProvider(process.env.INFURA_RPC)
-        );
-        const contract = new web3.eth.Contract(
-          cyberKyodai.abi,
-          process.env.KYODAI_GOERLI
-        );
+        setIsLoading(true);
         let _price = web3.utils.toWei("0.033", "ether");
         console.log("converted ether to wei");
         let encoded = contract.methods.publicMint(clan).encodeABI();
@@ -211,29 +210,61 @@ function MintPage() {
           value: web3.utils.numberToHex(_price),
         };
         console.log("sending transaction");
-        let txHash = ethereum
+        ethereum
           .request({
             method: "eth_sendTransaction",
             params: [tx],
           })
           .then((hash) => {
-            alert("You can now view your transaction with hash: " + hash);
+            // alert("You can now view your transaction with hash: " + hash);
+            window.localStorage.setItem("mint_tx_hash", hash);
+            getTxReceipt(hash);
           })
           .catch((err) => console.log(err));
-
-        getTxReceipt(txHash);
       }
     }
   };
+
   const getTxReceipt = async (txHash) => {
     // TODO rotating sakazuki cup as loading indicator
-    const loadingToast = toast.loading("Drinking from sakazuki cup...");
-    const res = await awaitTx(txHash);
-    const data = await res.json();
-    const receipt = data.receipt;
-    if (receipt !== null) {
+    const _toast = toast.loading(
+      <div>
+        <div>Drinking from sakazuki cup...</div>
+        <div>
+          View on{" "}
+          <a
+            href={`https://goerli.etherscan.io/tx/${txHash}`}
+            className=" text-blue-500 underline"
+            target="_blank"
+          >
+            Etherscan
+          </a>
+        </div>
+      </div>
+    );
+    setLoadingToast(_toast);
+    window.localStorage.setItem("is_loading", true);
+    awaitTx(txHash);
+  };
+
+  const awaitTx = async (txHash) => {
+    let res = await fetch("/api/tx?hash=" + txHash);
+    if (res && res.status === 200) {
+      const data = await res.json();
       // Transaction went through
-      if (receipt.status === "0x0") {
+      const receipt = data.receipt;
+      setTxReceipt(receipt);
+    } else {
+      // Try again in 3 second
+      console.log("Try again in 3 second");
+      window.setTimeout(function () {
+        awaitTx(txHash);
+      }, 3000);
+    }
+  };
+  useEffect(() => {
+    if (txReceipt) {
+      if (txReceipt.status === "0x0") {
         toast.update(loadingToast, {
           render: "Transaction failed! Please try again...",
           type: "error",
@@ -249,22 +280,11 @@ function MintPage() {
         });
       }
       // TODO display minted kyodai
+      setTxComplete(true);
+      setIsLoading(false);
+      window.localStorage.removeItem("is_loading");
     }
-  };
-
-  const awaitTx = async (txHash) => {
-    let receipt = await fetch("/api/tx?hash=" + txHash);
-    if (receipt !== null) {
-      // Transaction went through
-      return receipt;
-    } else {
-      // Try again in 3 second
-      window.setTimeout(function () {
-        awaitTx(txHash);
-      }, 3000);
-    }
-  };
-
+  }, [txReceipt]);
   return (
     <main>
       <div className="flex h-[90vh] flex-col items-center justify-center bg-fuchsia-400">
@@ -275,6 +295,14 @@ function MintPage() {
           theme="light"
           hideProgressBar={true}
         />
+        {/* modal to show the minted kyodai image */}
+        <MintedTokenImage
+          show={txComplete}
+          // show={true}
+          contract={contract}
+          address={address}
+          // address="0x7373F3D02eA3B4088d7f195d59FBF940d3757164"
+        />
         <MintDialog changeClan={chooseClan} clan={clan} />
         <div
           className={`${
@@ -283,11 +311,14 @@ function MintPage() {
         >
           <button
             ref={mintButtonGlitch.ref}
-            disabled={modalOpen ? true : false}
+            disabled={modalOpen || isLoading ? true : false}
             data-augmented-ui=" tr-clip tl-clip"
             className=" flex  h-[5vh]  w-[35vw]  flex-col items-center justify-center bg-red-500 hover:bg-red-700 md:w-[20vw] lg:w-[15vw]"
             onClick={() => {
               mintHandler(address);
+              // getTxReceipt(
+              //   "0xff17afb6d1ad29747efb6ccb4b8ab1054def460963a898a0b4d2a9d19c50cc1e"
+              // );
             }}
           >
             Mint
