@@ -3,18 +3,13 @@ const web3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA_RPC));
 
 export async function GET(req) {
   const hash = req.nextUrl.searchParams.get("hash");
+  let error = false;
   let receipt = await web3.eth.getTransactionReceipt(
     hash,
     function (e, receipt) {
       if (e) {
-        return new Response(
-          JSON.stringify({
-            e,
-          }),
-          {
-            status: 500,
-          }
-        );
+        error = true;
+        return e;
       }
       if (receipt) {
         return receipt;
@@ -23,12 +18,23 @@ export async function GET(req) {
       }
     }
   );
-  return new Response(
-    JSON.stringify({
-      receipt,
-    }),
-    {
-      status: 200,
-    }
-  );
+  if (error) {
+    return new Response(
+      JSON.stringify({
+        receipt,
+      }),
+      {
+        status: 500,
+      }
+    );
+  } else {
+    return new Response(
+      JSON.stringify({
+        receipt,
+      }),
+      {
+        status: 200,
+      }
+    );
+  }
 }
