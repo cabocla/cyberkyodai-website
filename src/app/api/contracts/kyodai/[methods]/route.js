@@ -6,19 +6,23 @@ const contract = new web3.eth.Contract(
   cyberKyodai.abi,
   process.env.KYODAI_GOERLI
 );
+const replacer = (key, value) =>
+  typeof value === "bigint" ? value.toString() : value;
+
 export async function GET(req) {
-  const method = req.url.split("contracts/kyodai/")[1];
+  const url = req.url.split("contracts/kyodai/")[1];
   // let web3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA_RPC));
   // let contract = new web3.eth.Contract(
   //   cyberKyodai.abi,
   //   process.env.KYODAI_GOERLI
   // );
-
+  const method = url.split("?")[0];
+  let params = req.nextUrl.searchParams;
   let data;
   try {
     switch (method) {
       case "alliance-supply":
-        data = await allianceSupply(contract);
+        data = await allianceSupply();
         break;
       case "name":
         data = { name: await contract.methods.name().call() };
@@ -30,6 +34,19 @@ export async function GET(req) {
         data = {
           totalSupply: String(await contract.methods.totalSupply().call()),
         };
+        break;
+      case "token-uri":
+        data = {
+          tokenURI: String(
+            await contract.methods.tokenURI(params.get("id")).call()
+          ),
+        };
+        break;
+      case "events":
+        data = await getEvents();
+        break;
+      case "events-mint":
+        data = await getMints(params);
         break;
     }
   } catch (e) {
@@ -46,7 +63,28 @@ export async function GET(req) {
   );
 }
 
-async function allianceSupply(contract) {
+async function getMints(params) {
+  const address = params.get("address");
+  const res = await getEvents("Transfer", {
+    filter: {
+      from: "0x0000000000000000000000000000000000000000",
+      to: address,
+    }, // Using an array means OR: e.g. 20 or 23
+    fromBlock: 0,
+    toBlock: "latest",
+  });
+  return { events: res };
+}
+
+async function getEvents(eventName, config) {
+  const res = await contract.getPastEvents(eventName, config);
+  let data = res.map((e) => {
+    return JSON.parse(JSON.stringify(e, replacer));
+  });
+  return data;
+}
+
+async function allianceSupply() {
   console.log("called alliance supply method");
   let ryu;
   let tora;
@@ -66,33 +104,3 @@ async function allianceSupply(contract) {
     },
   };
 }
-
-// async function mint(req) {
-//   const clan = req.nextUrl.searchParams.get("clan");
-//   const address = req.nextUrl.searchParams.get("address");
-//   let _price = web3.utils.toWei("0.033");
-//   let encoded = contract.methods.publicMint(clan).encodeABI();
-
-//   let tx = {
-//     from: address,
-//     to: process.env.KYODAI_GOERLI,
-//     data: encoded,
-//     nonce: "0x00",
-//     value: web3.utils.numberToHex(_price),
-//   };
-//   if (ethereum) {
-//     let txHash = ethereum
-//       .request({
-//         method: "eth_sendTransaction",
-//         params: [tx],
-//       })
-//       .then((hash) => {
-//         alert("You can now view your transaction with hash: " + hash);
-//       })
-//       .catch((err) => console.log(err));
-
-//     return txHash;
-//   } else {
-//     console.log("ethereum not exist");
-//   }
-// }
