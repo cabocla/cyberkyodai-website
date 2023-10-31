@@ -10,6 +10,7 @@ export default function MintedTokenImage(props) {
   const address = props.address;
   const [eventLog, setEventLog] = useState(null);
   const [metadatas, setMetadatas] = useState([]);
+  const [kyodaiId, setKyodaiId] = useState(null);
 
   const getEvents = async () => {
     const res = await fetch(
@@ -30,7 +31,9 @@ export default function MintedTokenImage(props) {
     let tokenURIs = [];
     const amount = tokenIds.length > 1 ? 2 : 1;
     for (let i = 0; i < amount; i++) {
-      const index = tokenIds.length - 1 - i;
+      const index = tokenIds.length - (1 + i);
+      // const index = i;
+      setKyodaiId(tokenIds[index]);
       const res = await fetch(
         kyodaiApi + methods.tokenURI + "?id=" + tokenIds[index]
       );
@@ -75,9 +78,13 @@ export default function MintedTokenImage(props) {
         <div
           key={market.title}
           data-augmented-ui="tr-clip  bl-clip "
-          className={`${market.bgColor} ${market.textColor}  m-2 flex w-1/2 flex-row items-center justify-center p-2 md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 `}
+          className={`${market.bgColor} ${market.textColor}  m-2  w-1/2  md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 `}
         >
-          <button>
+          <a
+            href={market.url + (kyodaiId ?? "")}
+            target="blank"
+            className="flex h-full w-full flex-row items-center justify-center p-2"
+          >
             <Image
               src={market.logo}
               alt={market.title}
@@ -85,8 +92,8 @@ export default function MintedTokenImage(props) {
               width={50}
               style={{ borderRadius: "50%" }}
             />
-          </button>
-          <div className=" px-5">{market.title}</div>
+            <div className=" px-5">{market.title}</div>
+          </a>
         </div>
       );
     });
