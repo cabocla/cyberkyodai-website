@@ -44,15 +44,16 @@ export default function MintedTokenImage(props) {
                 );
                 const text = toUtf8String(metadata);
                 tokenURIs.push(JSON.parse(text));
+                console.log("set metadata of tokenId " + tokenIds[index]);
                 setMetadatas(tokenURIs);
               })
               .catch((e) => console.log(e));
           })
           .catch((e) => console.log(e));
       }
+      console.log("metadata: " + tokenURIs);
+      setMetadatas(tokenURIs);
     });
-    console.log("metadata: " + tokenURIs);
-    setMetadatas(tokenURIs);
   };
 
   useEffect(() => {
