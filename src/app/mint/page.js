@@ -197,6 +197,7 @@ function MintPage() {
         toast.warn("Choose a clan to pledge your allegiance to!");
       } else {
         setIsLoading(true);
+
         let _price = web3.utils.toWei("0.033", "ether");
         console.log("converted ether to wei");
         let encoded = contract.methods.publicMint(clan).encodeABI();
@@ -216,9 +217,16 @@ function MintPage() {
           .then((hash) => {
             // alert("You can now view your transaction with hash: " + hash);
             window.localStorage.setItem("mint_tx_hash", hash);
-            getTxReceipt(hash);
+            if (hash) {
+              getTxReceipt(hash);
+            }
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            console.log(err);
+            setTxComplete(false);
+          });
+
+        setIsLoading(false);
       }
     }
   };
