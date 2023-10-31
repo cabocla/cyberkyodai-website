@@ -22,33 +22,31 @@ export default function MintedTokenImage(props) {
     return tokenIds;
   };
   const getImage = async () => {
-    const tokenIds = await getEvents();
     let tokenURIs = [];
-    console.log(tokenIds);
-    const amount = tokenIds.length > 1 ? 2 : 1;
-    for (let i = 0; i < amount; i++) {
-      const index = tokenIds.length - (1 + i);
-      // const index = i;
-      setKyodaiId(tokenIds[index]);
-      const res = await fetch(
-        kyodaiApi + methods.tokenURI + "?id=" + tokenIds[index]
-      )
-        .then((res) => {
-          res
-            .json()
-            .then((tokenURI) => {
-              const encodedMetadata = tokenURI.data.tokenURI;
-              const metadata = decodeBase64(
-                encodedMetadata.split("base64,")[1]
-              );
-              const text = toUtf8String(metadata);
-              tokenURIs.push(JSON.parse(text));
-            })
-            .catch((e) => console.log(e));
-        })
-        .catch((e) => console.log(e));
-    }
-    console.log(tokenURIs);
+    getEvents().then((tokenIds) => {
+      const amount = tokenIds.length > 1 ? 2 : 1;
+      for (let i = 0; i < amount; i++) {
+        const index = tokenIds.length - (1 + i);
+        // const index = i;
+        setKyodaiId(tokenIds[index]);
+        fetch(kyodaiApi + methods.tokenURI + "?id=" + tokenIds[index])
+          .then((res) => {
+            res
+              .json()
+              .then((tokenURI) => {
+                const encodedMetadata = tokenURI.data.tokenURI;
+                const metadata = decodeBase64(
+                  encodedMetadata.split("base64,")[1]
+                );
+                const text = toUtf8String(metadata);
+                tokenURIs.push(JSON.parse(text));
+                setMetadatas(tokenURIs);
+              })
+              .catch((e) => console.log(e));
+          })
+          .catch((e) => console.log(e));
+      }
+    });
     setMetadatas(tokenURIs);
   };
 
@@ -61,6 +59,7 @@ export default function MintedTokenImage(props) {
     }
   }, [address, eventLog]);
 
+  useEffect(() => {}, [metadatas]);
   const marketplaceButtons = () => {
     const marketplaces = [
       {
@@ -123,7 +122,7 @@ export default function MintedTokenImage(props) {
               <div
                 key={metadata.name}
                 data-augmented-ui="tr-clip tl-clip br-clip bl-clip "
-                className={`${metadatas.length !== 0 ? "" : hidden}`}
+                className={`${metadatas.length !== 0 ? "" : "hidden"}`}
               >
                 <div className="relative flex h-[30vh] w-[30vh] p-2 lg:h-[40vh] lg:w-[40vh] ">
                   <Image
