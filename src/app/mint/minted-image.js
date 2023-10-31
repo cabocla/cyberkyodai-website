@@ -14,11 +14,7 @@ export default function MintedTokenImage(props) {
 
   const getEvents = async () => {
     const res = await fetch(
-      process.env.NEXT_PUBLIC_URL +
-        kyodaiApi +
-        methods.eventsMint +
-        "?address=" +
-        address
+      kyodaiApi + methods.eventsMint + "?address=" + address
     );
     const data = await res.json();
     const tokenIds = data.data.events.map((e) => e.returnValues.tokenId);
@@ -36,17 +32,23 @@ export default function MintedTokenImage(props) {
       setKyodaiId(tokenIds[index]);
       const res = await fetch(
         kyodaiApi + methods.tokenURI + "?id=" + tokenIds[index]
-      ).then((res) => {
-        res.json().then((tokenURI) => {
-          
-          const encodedMetadata = tokenURI.data.tokenURI;
-          const metadata = decodeBase64(encodedMetadata.split("base64,")[1]);
-          const text = toUtf8String(metadata);
-          tokenURIs.push(JSON.parse(text));
-        }).catch(e=>console.log(e))
-      }).catch(e=>console.log(e));
+      )
+        .then((res) => {
+          res
+            .json()
+            .then((tokenURI) => {
+              const encodedMetadata = tokenURI.data.tokenURI;
+              const metadata = decodeBase64(
+                encodedMetadata.split("base64,")[1]
+              );
+              const text = toUtf8String(metadata);
+              tokenURIs.push(JSON.parse(text));
+            })
+            .catch((e) => console.log(e));
+        })
+        .catch((e) => console.log(e));
     }
-    console.log(tokenURIs)
+    console.log(tokenURIs);
     setMetadatas(tokenURIs);
   };
 
