@@ -11,6 +11,7 @@ export default function MintedTokenImage(props) {
   const [eventLog, setEventLog] = useState(null);
   const [metadatas, setMetadatas] = useState([]);
   const [kyodaiId, setKyodaiId] = useState(null);
+  const [showImage, setShowImage] = useState(false);
 
   const getEvents = async () => {
     const res = await fetch(
@@ -24,9 +25,12 @@ export default function MintedTokenImage(props) {
   const getImage = async () => {
     let tokenURIs = [];
     getEvents().then((tokenIds) => {
+      console.log("tokenIds: " + tokenIds);
+
       const amount = tokenIds.length > 1 ? 2 : 1;
       for (let i = 0; i < amount; i++) {
         const index = tokenIds.length - (1 + i);
+        console.log("index:" + index);
         // const index = i;
         setKyodaiId(tokenIds[index]);
         fetch(kyodaiApi + methods.tokenURI + "?id=" + tokenIds[index])
@@ -47,6 +51,7 @@ export default function MintedTokenImage(props) {
           .catch((e) => console.log(e));
       }
     });
+    console.log("metadata: " + tokenURIs);
     setMetadatas(tokenURIs);
   };
 
@@ -59,7 +64,14 @@ export default function MintedTokenImage(props) {
     }
   }, [address, eventLog]);
 
-  useEffect(() => {}, [metadatas]);
+  useEffect(() => {
+    console.log(
+      metadatas.map((data) => console.log("token name: " + data.name))
+    );
+    if (metadatas.length !== 0) {
+      setShowImage(true);
+    }
+  }, [metadatas]);
   const marketplaceButtons = () => {
     const marketplaces = [
       {
@@ -117,29 +129,34 @@ export default function MintedTokenImage(props) {
         <div className="relative flex h-[80vh] w-full flex-col items-center justify-evenly bg-red-300 md:h-3/5 md:flex-row">
           <div></div>
 
-          {metadatas.map((metadata) => {
-            return (
-              <div
-                key={metadata.name}
-                data-augmented-ui="tr-clip tl-clip br-clip bl-clip "
-                className={`${metadatas.length !== 0 ? "" : "hidden"}`}
-              >
-                <div className="relative flex h-[30vh] w-[30vh] p-2 lg:h-[40vh] lg:w-[40vh] ">
-                  <Image
-                    src={metadata.image_data}
-                    alt={metadata.name}
-                    // width={100}
-                    // height={100}
-                    fill={true}
-                    style={{ objectFit: "contain" }}
-                  />
+          {showImage ? (
+            metadatas.map((metadata) => {
+              console.log("token image" + metadata.image_data);
+              return (
+                <div
+                  key={metadata.name}
+                  data-augmented-ui="tr-clip tl-clip br-clip bl-clip "
+                  className={`${metadatas.length !== 0 ? "" : "hidden"}`}
+                >
+                  <div className="relative flex h-[30vh] w-[30vh] p-2 lg:h-[40vh] lg:w-[40vh] ">
+                    <Image
+                      src={metadata.image_data}
+                      alt={metadata.name}
+                      // width={100}
+                      // height={100}
+                      fill={true}
+                      style={{ objectFit: "contain" }}
+                    />
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          ) : (
+            <div></div>
+          )}
           <div
             className={`flex h-[30vh] w-[30vh] items-center justify-center p-2 lg:h-[40vh] lg:w-[40vh] ${
-              metadatas.length !== 0 ? "hidden" : ""
+              showImage ? "hidden" : ""
             }`}
           >
             Loading...
