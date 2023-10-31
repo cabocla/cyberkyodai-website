@@ -72,13 +72,14 @@ export default function MintedTokenImage(props) {
         logo: blurLogo,
       },
     ];
-
     return marketplaces.map((market) => {
       return (
         <div
           key={market.title}
           data-augmented-ui="tr-clip  bl-clip "
-          className={`${market.bgColor} ${market.textColor}  m-2  w-1/2  md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 `}
+          className={`${market.bgColor} ${market.textColor}   ${
+            !props.show ? "hidden" : ""
+          }  m-2  w-1/2  md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 `}
         >
           <a
             href={market.url + (kyodaiId ?? "")}
