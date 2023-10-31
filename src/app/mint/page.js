@@ -269,14 +269,14 @@ function MintPage() {
           render: "Transaction failed! Please try again...",
           type: "error",
           isLoading: false,
-          autoClose: 3000,
+          autoClose: 2000,
         });
       } else {
         toast.update(loadingToast, {
           render: "All is good",
           type: "success",
           isLoading: false,
-          autoClose: 3000,
+          autoClose: 2000,
         });
       }
       // TODO display minted kyodai
