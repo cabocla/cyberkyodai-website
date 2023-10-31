@@ -62,9 +62,7 @@ function MintPage() {
   const chooseClan = (_clan) => {
     setClan(_clan);
   };
-  console.log("mint page");
   useEffect(() => {
-    console.log("called use effect for glitch");
     if (address) {
       connectButtonGlitch.stopGlitch();
       mintButtonGlitch.startGlitch();

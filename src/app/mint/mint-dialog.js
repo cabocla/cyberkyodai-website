@@ -107,7 +107,6 @@ function MintDialog(props) {
   const ryuGlitch = useGlitch(glitchConfig);
   const toraGlitch = useGlitch(glitchConfig);
   const nobuGlitch = useGlitch(glitchConfig);
-  console.log("getting clans supply");
   const getSupply = async () => {
     console.log("getting alliance supply");
     const res = await fetch(kyodaiApi + methods.allianceSupply);
