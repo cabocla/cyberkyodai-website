@@ -152,7 +152,7 @@ export default function MintedTokenImage(props) {
               );
             })
           ) : (
-            <div></div>
+            <div className="hidden"></div>
           )}
           <div
             className={`flex h-[30vh] w-[30vh] items-center justify-center p-2 lg:h-[40vh] lg:w-[40vh] ${
