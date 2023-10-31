@@ -24,7 +24,7 @@ export default function MintedTokenImage(props) {
   };
   const getImage = async () => {
     let tokenURIs = [];
-    getEvents().then((tokenIds) => {
+    await getEvents().then(async (tokenIds) => {
       console.log("tokenIds: " + tokenIds);
 
       const amount = tokenIds.length > 1 ? 2 : 1;
@@ -33,7 +33,7 @@ export default function MintedTokenImage(props) {
         console.log("index:" + index);
         // const index = i;
         setKyodaiId(tokenIds[index]);
-        fetch(kyodaiApi + methods.tokenURI + "?id=" + tokenIds[index])
+        await fetch(kyodaiApi + methods.tokenURI + "?id=" + tokenIds[index])
           .then((res) => {
             res
               .json()
@@ -51,7 +51,7 @@ export default function MintedTokenImage(props) {
           })
           .catch((e) => console.log(e));
       }
-      console.log("metadata: " + tokenURIs);
+      console.log("metadata: " + tokenURIs[0]);
       setMetadatas(tokenURIs);
     });
   };
