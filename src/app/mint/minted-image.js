@@ -36,13 +36,17 @@ export default function MintedTokenImage(props) {
       setKyodaiId(tokenIds[index]);
       const res = await fetch(
         kyodaiApi + methods.tokenURI + "?id=" + tokenIds[index]
-      );
-      const tokenURI = await res.json();
-      const encodedMetadata = tokenURI.data.tokenURI;
-      const metadata = decodeBase64(encodedMetadata.split("base64,")[1]);
-      const text = toUtf8String(metadata);
-      tokenURIs.push(JSON.parse(text));
+      ).then((res) => {
+        res.json().then((tokenURI) => {
+          
+          const encodedMetadata = tokenURI.data.tokenURI;
+          const metadata = decodeBase64(encodedMetadata.split("base64,")[1]);
+          const text = toUtf8String(metadata);
+          tokenURIs.push(JSON.parse(text));
+        }).catch(e=>console.log(e))
+      }).catch(e=>console.log(e));
     }
+    console.log(tokenURIs)
     setMetadatas(tokenURIs);
   };
 
