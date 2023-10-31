@@ -9,7 +9,7 @@ export default function MintedTokenImage(props) {
   const contract = props.contract;
   const address = props.address;
   const [eventLog, setEventLog] = useState(null);
-  const [metadatas, setMetadatas] = useState(null);
+  const [metadatas, setMetadatas] = useState([]);
   const [kyodaiId, setKyodaiId] = useState(null);
 
   const getEvents = async () => {
@@ -45,12 +45,12 @@ export default function MintedTokenImage(props) {
     }
     setMetadatas(tokenURIs);
   };
+
   useEffect(() => {
-    console.log("call use effect in minted image");
     window.localStorage.removeItem("mint_tx_hash");
     window.localStorage.removeItem("is_loading");
 
-    if (!eventLog) {
+    if (eventLog === null && address !== null) {
       getImage();
     }
   }, [address, eventLog]);
@@ -111,11 +111,12 @@ export default function MintedTokenImage(props) {
         <div className="relative flex h-[80vh] w-full flex-col items-center justify-evenly bg-red-300 md:h-3/5 md:flex-row">
           <div></div>
 
-          {metadatas ? (
-            metadatas.map((metadata) => (
+          {metadatas.map((metadata) => {
+            return (
               <div
                 key={metadata.name}
                 data-augmented-ui="tr-clip tl-clip br-clip bl-clip "
+                className={`${metadatas.length !== 0 ? "" : hidden}`}
               >
                 <div className="relative flex h-[30vh] w-[30vh] p-2 lg:h-[40vh] lg:w-[40vh] ">
                   <Image
@@ -128,12 +129,15 @@ export default function MintedTokenImage(props) {
                   />
                 </div>
               </div>
-            ))
-          ) : (
-            <div className="flex h-[30vh] w-[30vh] p-2 lg:h-[40vh] lg:w-[40vh] ">
-              Loading...
-            </div>
-          )}
+            );
+          })}
+          <div
+            className={`flex h-[30vh] w-[30vh] items-center justify-center p-2 lg:h-[40vh] lg:w-[40vh] ${
+              metadatas.length !== 0 ? "hidden" : ""
+            }`}
+          >
+            Loading...
+          </div>
 
           <div></div>
         </div>
