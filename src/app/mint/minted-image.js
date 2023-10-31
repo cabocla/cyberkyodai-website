@@ -9,7 +9,7 @@ export default function MintedTokenImage(props) {
   const contract = props.contract;
   const address = props.address;
   const [eventLog, setEventLog] = useState(null);
-  const [metadatas, setMetadatas] = useState([]);
+  const [metadatas, setMetadatas] = useState(null);
   const [kyodaiId, setKyodaiId] = useState(null);
 
   const getEvents = async () => {
@@ -28,6 +28,7 @@ export default function MintedTokenImage(props) {
   const getImage = async () => {
     const tokenIds = await getEvents();
     let tokenURIs = [];
+    console.log(tokenIds);
     const amount = tokenIds.length > 1 ? 2 : 1;
     for (let i = 0; i < amount; i++) {
       const index = tokenIds.length - (1 + i);
