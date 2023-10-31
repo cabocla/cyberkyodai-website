@@ -302,13 +302,17 @@ function MintPage() {
           hideProgressBar={true}
         />
         {/* modal to show the minted kyodai image */}
-        <MintedTokenImage
-          show={txComplete}
-          // show={true}
-          contract={contract}
-          address={address}
-          // address="0x7373F3D02eA3B4088d7f195d59FBF940d3757164"
-        />
+        {txComplete ? (
+          <MintedTokenImage
+            show={txComplete}
+            // show={true}
+            contract={contract}
+            address={address}
+            // address="0x7373F3D02eA3B4088d7f195d59FBF940d3757164"
+          />
+        ) : (
+          <div></div>
+        )}
         <MintDialog changeClan={chooseClan} clan={clan} />
         <div
           className={`${
