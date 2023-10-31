@@ -18,8 +18,7 @@ export default function MintedTokenImage(props) {
         kyodaiApi +
         methods.eventsMint +
         "?address=" +
-        // address
-        "0x7373F3D02eA3B4088d7f195d59FBF940d3757164"
+        address
     );
     const data = await res.json();
     const tokenIds = data.data.events.map((e) => e.returnValues.tokenId);
@@ -110,23 +109,31 @@ export default function MintedTokenImage(props) {
         </div>
         <div className="relative flex h-[80vh] w-full flex-col items-center justify-evenly bg-red-300 md:h-3/5 md:flex-row">
           <div></div>
-          {metadatas.map((metadata) => (
-            <div
-              key={metadata.name}
-              data-augmented-ui="tr-clip tl-clip br-clip bl-clip "
-            >
-              <div className="relative flex h-[30vh] w-[30vh] p-2 lg:h-[40vh] lg:w-[40vh] ">
-                <Image
-                  src={metadata.image_data}
-                  alt={metadata.name}
-                  // width={100}
-                  // height={100}
-                  fill={true}
-                  style={{ objectFit: "contain" }}
-                />
+
+          {metadatas ? (
+            metadatas.map((metadata) => (
+              <div
+                key={metadata.name}
+                data-augmented-ui="tr-clip tl-clip br-clip bl-clip "
+              >
+                <div className="relative flex h-[30vh] w-[30vh] p-2 lg:h-[40vh] lg:w-[40vh] ">
+                  <Image
+                    src={metadata.image_data}
+                    alt={metadata.name}
+                    // width={100}
+                    // height={100}
+                    fill={true}
+                    style={{ objectFit: "contain" }}
+                  />
+                </div>
               </div>
+            ))
+          ) : (
+            <div className="flex h-[30vh] w-[30vh] p-2 lg:h-[40vh] lg:w-[40vh] ">
+              Loading...
             </div>
-          ))}
+          )}
+
           <div></div>
         </div>
         <div className="flex h-20 flex-row items-center justify-center md:h-1/5">
