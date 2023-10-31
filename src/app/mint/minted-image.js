@@ -46,13 +46,12 @@ export default function MintedTokenImage(props) {
                 tokenURIs.push(JSON.parse(text));
                 console.log("set metadata of tokenId " + tokenIds[index]);
                 setMetadatas(tokenURIs);
+                setShowImage(true);
               })
               .catch((e) => console.log(e));
           })
           .catch((e) => console.log(e));
       }
-      console.log("metadata: " + tokenURIs[0]);
-      setMetadatas(tokenURIs);
     });
   };
 
