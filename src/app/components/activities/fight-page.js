@@ -10,7 +10,7 @@ function FightingPage() {
       <div className=" flex h-full w-full flex-col items-center  lg:flex-row">
         <div className="flex  w-full flex-col ">
           <div className="-100 m-10 mb-0">
-            <h1>Fight</h1>
+            <h2 className="text-5xl">Fight</h2>
           </div>
           <div className="m-10 flex h-full  flex-col ">
             <p>
@@ -20,7 +20,7 @@ function FightingPage() {
             <p>Retrieve their pinkies and present them to Oyabun.</p>
           </div>
         </div>
-        <div className="flex h-3/4 w-full flex-col items-center  pb-20 lg:h-full lg:px-10  lg:py-36">
+        <div className="flex h-3/4 w-full flex-col items-center px-5  pb-20 lg:h-full lg:px-10  lg:py-36">
           <CyberFrame>
             <Image
               className="h-full w-full "

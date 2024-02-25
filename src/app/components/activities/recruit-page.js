@@ -53,7 +53,7 @@ function RecruitPage() {
       <div className=" flex h-full w-full flex-col items-center  lg:flex-row-reverse">
         <div className="flex w-full flex-col ">
           <div className="m-10 mb-0 ">
-            <h1>Recruit</h1>
+            <h2 className="text-5xl">Recruit</h2>
           </div>
           <div className="m-10 flex h-3/4  flex-col ">
             <p>

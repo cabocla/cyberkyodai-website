@@ -8,13 +8,15 @@ function Outro() {
     <PageContent id="sakazuki">
       <div className="flex h-full w-full flex-col lg:flex-row ">
         <div className="flex h-2/6 w-full flex-col items-center justify-center  px-10 lg:h-full">
-          <h2>Pledge your allegiance</h2>
+          <h2 className=" text-center text-3xl">Pledge your allegiance</h2>
           <br />
-          <p>Join the community to be eligible for Sakazuki list</p>
+          <p className="text-center">
+            Join the community to be eligible for Sakazuki list
+          </p>
           <br />
-          <h2>Oyabun is waiting for you</h2>
+          <h2 className="text-center text-2xl">Oyabun is waiting for you</h2>
         </div>
-        <div className="flex h-4/6 w-full items-center justify-start  p-5 lg:h-full lg:p-16">
+        <div className="flex h-4/6 w-full items-center justify-start p-5  pb-10 lg:h-full lg:p-16">
           <div
             className={`${classes.outroFrame} flex h-full w-full  `}
             data-augmented-ui="br-clip bl-clip tr-clip tl-clip both "

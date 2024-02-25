@@ -9,7 +9,7 @@ function WorkingPage() {
       <div className=" flex h-full w-full flex-col items-center  lg:flex-row-reverse">
         <div className="flex  w-full flex-col">
           <div className="m-10 mb-0 ">
-            <h1>Run Gigs</h1>
+            <h2 className="text-5xl">Run Gigs</h2>
           </div>
           <div className="m-10  flex h-full  flex-col ">
             <p>
@@ -22,7 +22,7 @@ function WorkingPage() {
             <br />
           </div>
         </div>
-        <div className="flex h-3/4 w-full flex-col items-center  pb-20 lg:h-full lg:px-10  lg:py-36">
+        <div className="flex h-3/4 w-full flex-col items-center px-5   pb-20 lg:h-full lg:px-10  lg:py-36">
           <CyberFrame reverse={true}>
             <Image
               className=" h-full w-full  items-center justify-center "

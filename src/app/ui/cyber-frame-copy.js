@@ -12,7 +12,7 @@ function CyberFrame(props) {
        `}
       className={`${
         props.reverse ? classes.cyberFrameRev : classes.cyberFrame
-      } flex  h-full flex-col items-center justify-start   lg:mx-10  lg:w-full  `}
+      } flex h-full  w-full flex-col items-center justify-start   px-5 lg:mx-10  `}
     >
       <div
         data-augmented-ui-inlay

@@ -10,7 +10,7 @@ function Clans() {
           <Image src={clanLogos} alt="Cyber Kyodai Clan Logos" />
         </div>
         <div className="mx-10 flex h-full flex-col justify-center lg:w-[50vw]">
-          <h1>Clans</h1>
+          <h2 className="text-5xl">Clans</h2>
           <p>
             Within the depths of Neo Tokyo underbelly, intricate power struggle
             takes place between the big three for dominance against each other.

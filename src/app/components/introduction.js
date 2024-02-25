@@ -50,8 +50,8 @@ function Introduction() {
           />
         </div> */}
         <div className=" z-10 h-full w-full justify-end ">
-          <div className=" flex h-1/6 items-center justify-center  lg:h-1/4 ">
-            <h1>Welcome to Neo Tokyo</h1>
+          <div className=" flex h-2/6 items-center justify-center px-5  lg:h-1/4 ">
+            <h2 className="text-4xl">Welcome to Neo Tokyo</h2>
           </div>
           <div className="lg:h-1/8 absolute flex  h-10 w-full ">
             <video
