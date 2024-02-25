@@ -14,7 +14,7 @@ function Home() {
       <div>
         <Hero />
         <Introduction />
-        <Feature />
+        {/* <Feature /> */}
         <Clans />
         <Gameplay />
         <Outro />

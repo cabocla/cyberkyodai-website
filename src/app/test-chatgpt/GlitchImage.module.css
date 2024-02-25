@@ -1,0 +1,8 @@
+.GlitchImage {
+  position: absolute;
+  --aug-all-width: 100%;
+  --aug-tr: 33.33%;
+  --aug-tl: 33.33%;
+  --aug-br: 33.33%;
+  --aug-bl: 33.33%;
+}

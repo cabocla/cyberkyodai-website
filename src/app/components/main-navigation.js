@@ -27,8 +27,8 @@ function MainNavigation() {
   const [navbar, setNavbar] = useState(false);
   return (
     <header className="sticky top-0 z-30 w-full">
-      <nav className="  w-vw flex h-[8vh] flex-row items-center justify-between bg-slate-300">
-        <div className="ml-5 flex  bg-purple-200 ">
+      <nav className="  w-vw flex h-[8vh] flex-row items-center justify-between bg-black">
+        <div className="ml-5 flex   ">
           <Link href="/">
             <h1 className="mx-5 ">Cyber Kyodai</h1>
           </Link>
@@ -44,7 +44,7 @@ function MainNavigation() {
           ))}
         </div> */}
         <div className="flex flex-row">
-          <div className="  flex flex-row items-center bg-green-200">
+          <div className="  hidden flex-row  items-center sm:flex">
             <div className="mx-2 flex">
               <div>
                 <Image
@@ -54,7 +54,7 @@ function MainNavigation() {
                   width={25}
                 />
               </div>
-              <h2 className="ml-2 hidden sm:flex ">TWITTER</h2>
+              <h2 className="ml-2  ">TWITTER</h2>
             </div>
             <div className="mx-2 flex">
               <div>
@@ -65,7 +65,7 @@ function MainNavigation() {
                   width={25}
                 />
               </div>
-              <h2 className="ml-2  hidden sm:flex">DISCORD</h2>
+              <h2 className="ml-2  ">DISCORD</h2>
             </div>
             {/* <h2 className="mx-5">twitter discord</h2> */}
           </div>
@@ -107,23 +107,65 @@ function MainNavigation() {
           </div>
         </div>
         {navbar && (
-          <div className="fixed right-0 top-[8vh] w-full flex-wrap   bg-gray-400  ">
+          <div className="fixed right-0 top-[8vh] w-full flex-wrap bg-slate-600 md:h-full   md:w-1/4  ">
             <ul>
               {menuItems.map((item) => (
                 <li key={item.title}>
-                  <div className="flex justify-end">
+                  <div className="flex justify-end hover:bg-slate-400">
                     <button
                       onClick={() => {
                         setNavbar(false);
                         scrollHandler(item.url);
                       }}
-                      className="m-2 flex flex-row justify-end"
+                      className=" flex h-full w-full flex-row justify-end"
                     >
-                      {item.title}
+                      <div className="my-3 mr-10 ">{item.title}</div>
                     </button>
                   </div>
                 </li>
               ))}
+              <div className=" flex h-full w-full flex-col place-items-end justify-evenly  md:hidden">
+                <div className="flex w-full justify-end hover:bg-slate-400">
+                  <button
+                    onClick={() => {
+                      // open twitter
+                    }}
+                    className=" flex h-full w-full flex-row justify-end"
+                  >
+                    <div className="my-3 mr-5 flex flex-row">
+                      <p className="mr-2 flex ">TWITTER</p>
+                      <div>
+                        <Image
+                          src={twitterLogo}
+                          alt="twitter.svg"
+                          height={25}
+                          width={25}
+                        />
+                      </div>
+                    </div>
+                  </button>
+                </div>
+                <div className=" flex w-full  justify-end hover:bg-slate-400">
+                  <button
+                    onClick={() => {
+                      // open twitter
+                    }}
+                    className=" flex h-full w-full flex-row justify-end"
+                  >
+                    <div className=" my-3 mr-5 flex ">
+                      <p className="mr-2 flex ">DISCORD</p>
+                      <div>
+                        <Image
+                          src={discordLogo}
+                          alt="discord.svg"
+                          height={25}
+                          width={25}
+                        />
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
             </ul>
           </div>
         )}

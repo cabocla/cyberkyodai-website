@@ -18,7 +18,7 @@ function MainNavigation() {
   return (
     <header className="sticky top-0 z-30 w-full">
       <nav className="  w-vw flex h-[8vh] flex-row items-center justify-between bg-slate-300">
-        <div className="ml-5 flex  bg-purple-200 ">
+        <div className="ml-5 flex  ">
           <Link href="/">
             <h1 className="mx-5 ">Cyber Kyodai</h1>
           </Link>
@@ -33,7 +33,7 @@ function MainNavigation() {
             </div>
           ))}
         </div> */}
-        <div className=" mr-5 hidden flex-row justify-end bg-green-200 sm:flex">
+        <div className=" mr-5 hidden flex-row justify-end  sm:flex">
           <div className="mx-5 flex">
             <div>
               <Image

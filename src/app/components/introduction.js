@@ -37,32 +37,47 @@ function Introduction() {
     kyodai10,
     kyodai11,
   ];
+  // let vid = document.getElementById("policeLineVideo");
+  // vid.playbackRate = 0.5;
   return (
     <PageContent id="about">
-      <div className="flex h-full w-full flex-col   bg-orange-500 lg:flex-row      ">
-        <div className=" h-full w-full justify-end bg-lime-200">
-          <div className="flex items-center justify-center bg-purple-200 lg:h-1/4 ">
-            <h1>Welcome to Neo Tokyo Underbelly</h1>
+      <div className="flex h-full w-full flex-col    lg:flex-row">
+        {/* <div className="absolute z-0 flex h-full w-full blur-md">
+          <Image
+            src={kazukichoImage}
+            alt="Kazukicho"
+            style={{ objectFit: "cover", objectPosition: "top" }}
+          />
+        </div> */}
+        <div className=" z-10 h-full w-full justify-end ">
+          <div className=" flex h-1/6 items-center justify-center  lg:h-1/4 ">
+            <h1>Welcome to Neo Tokyo</h1>
           </div>
-          <div className="lg:h-1/8 absolute  flex w-full bg-yellow-100">
-            <p>police line</p>
+          <div className="lg:h-1/8 absolute flex  h-10 w-full ">
+            <video
+              id="policeLineVideo"
+              src={require("../../../public/assets/videos/police line animation.mp4")}
+              autoPlay
+              loop
+              muted
+              style={{ objectFit: "cover" }}
+            >
+              Your browser does not support the video tag.
+            </video>
           </div>
-          <div className="mx-5 mt-10 flex h-1/2 flex-col justify-center bg-white">
-            <p>
+          <div className="z-10 mx-5 mt-10 flex h-3/4 flex-col justify-center ">
+            <p className=" text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
               Decades after oppression from the government, new era dawns as the
               Kyodais resurges to seize control over the enigmatic Neo Tokyo
               underworld.
-            </p>
-            <br />
-            <p>
+              <br />
+              <br />
               Reach supremacy on an eco-system built on the cornerstone of
               blockchain technology through competitive and strategic gameplay.
-              All assets and gameplay mechanics stored and exists on-chain. No
-              IPFS, no APIs, honoring the spirit of decentralization.
-            </p>
-            <br />
-
-            <p>
+              {/* All assets and gameplay mechanics stored and exists on-chain. No
+              IPFS, no APIs, honoring the spirit of decentralization. */}
+              <br />
+              <br />
               Fulfill your duties and master the path of Gokudo. Kyodais train,
               work, fight, and recruit underlings to grow the clans influence
               over Neo Tokyo underworld.

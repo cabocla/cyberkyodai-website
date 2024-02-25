@@ -5,7 +5,7 @@ function Feature() {
     <PageContent id="feature">
       <div className=" flex h-full w-full flex-col  sm:h-screen">
         <div className="flex h-[50vh] w-full flex-col justify-evenly lg:flex-row">
-          <div className=" flex h-full w-full flex-col items-center justify-center bg-orange-200 ">
+          <div className=" flex h-full w-full flex-col items-center justify-center ">
             <h1>On-chain</h1>
             <p>
               All CyberKyodai assets and gameplay mechanics stored and exists
@@ -14,7 +14,7 @@ function Feature() {
 
             <p>No IPFS, no APIs, honoring the spirit of decentralization.</p>
           </div>
-          <div className=" flex h-full w-full flex-col items-center justify-center bg-green-200 ">
+          <div className=" flex h-full w-full flex-col items-center justify-center ">
             <h1>Omnichain</h1>
             <p>
               Embrace the prestige of Ethereum NFT along with seamless
@@ -22,7 +22,7 @@ function Feature() {
             </p>
           </div>
         </div>
-        <div className="flex h-[50vh] w-full flex-col items-center  bg-red-200 ">
+        <div className="flex h-[50vh] w-full flex-col items-center ">
           <h1>gambar </h1>
         </div>
       </div>

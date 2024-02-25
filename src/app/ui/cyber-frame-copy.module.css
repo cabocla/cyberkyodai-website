@@ -2,6 +2,9 @@
   --aug-t-extend1: 50%;
   --aug-br: 50px;
   --aug-tl: 50px;
+  --aug-inlay-all: 5px;
+  --aug-border-bg: crimson;
+  --aug-border-all: 5px;
   /* --aug-tr-inset2: 10%; */
   /* --aug-tl-inset2: 10%; */
 }
@@ -10,10 +13,20 @@
   --aug-t-extend1: 50%;
   --aug-bl: 50px;
   --aug-tr: 50px;
+  --aug-inlay-all: 5px;
+  --aug-border-bg: crimson;
+  --aug-border-all: 5px;
   /* --aug-tr-inset2: 10%; */
   /* --aug-tl-inset2: 10%; */
 }
 
+.outroFrame {
+  --aug-t-extend1: 50%;
+  --aug-br: 20px;
+  --aug-tl: 20px;
+  --aug-bl: 20px;
+  --aug-tr: 20px;
+}
 @media (max-width: 640px) {
   .cyberFrame {
     --aug-t-extend1: 40%;

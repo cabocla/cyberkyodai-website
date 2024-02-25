@@ -164,8 +164,8 @@ function CarouselTest(props) {
   ]);
 
   return (
-    <div className=" flex flex-row items-center justify-center bg-orange-300 lg:m-10 ">
-      <div className="  flex flex-col items-center justify-center bg-green-200">
+    <div className=" flex flex-row items-center justify-center  lg:m-10 ">
+      <div className=" flex flex-col items-center justify-center  ">
         <GlitchImageWrapper>
           <GlitchImage
             ref={glitch1.ref}
@@ -207,7 +207,7 @@ function CarouselTest(props) {
           />
         </GlitchImageWrapper>
       </div>
-      <div className="flex flex-col items-center justify-end bg-green-300">
+      <div className="flex flex-col items-center justify-end ">
         <GlitchImageWrapper>
           <GlitchImage
             ref={glitch16.ref}
@@ -269,7 +269,7 @@ function CarouselTest(props) {
           />
         </GlitchImageWrapper>
       </div>
-      <div className="  flex  flex-col items-center bg-green-400">
+      <div className="  flex  flex-col items-center ">
         <GlitchImageWrapper>
           <GlitchImage
             ref={glitch10.ref}

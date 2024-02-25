@@ -56,8 +56,8 @@ function GlitchPage() {
   };
 
   return (
-    <div className="flex flex-col bg-slate-200">
-      <button className=" bg-slate-500" onClick={handleButtonClick}>
+    <div className="flex flex-col ">
+      <button className=" " onClick={handleButtonClick}>
         Change Image
       </button>
       <div className=" relative flex h-[20vw] w-[20vw]">
@@ -80,7 +80,7 @@ function GlitchPage() {
           toggle={index === 2}
         />
       </div>
-      <div className="relative  flex h-[20vw] w-[20vw] bg-green-200">
+      <div className="relative  flex h-[20vw] w-[20vw] ">
         <GlitchImage
           ref={glitch1.ref}
           src={kyodai2}

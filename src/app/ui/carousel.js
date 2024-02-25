@@ -30,17 +30,17 @@ function Carousel() {
     pulse: false,
   });
   return (
-    <div className="relative  m-10 flex flex-row items-center  bg-orange-300 ">
-      <div className=" flex  flex-col items-center bg-green-200">
+    <div className="relative  m-10 flex flex-row items-center  ">
+      <div className=" flex  flex-col items-center">
         <div ref={glitch1.ref}>{kyodais[0]}</div>
         <div>{kyodais[1]}</div>
       </div>
-      <div className="flex flex-col items-center justify-end bg-green-300">
+      <div className="flex flex-col items-center justify-end ">
         {kyodais[2]}
         {kyodais[3]}
         {kyodais[4]}
       </div>
-      <div className="  flex  flex-col items-center bg-green-400">
+      <div className="  flex  flex-col items-center ">
         {kyodais[5]}
         {kyodais[6]}
       </div>

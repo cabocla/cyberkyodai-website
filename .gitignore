@@ -38,4 +38,4 @@ next-env.d.ts
 
 GlitchImageOrder.xlsx
 temp
-whitelist-addresses.js
+# whitelist-addresses.js

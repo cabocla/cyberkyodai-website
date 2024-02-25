@@ -22,7 +22,7 @@ const osake = localFont({
 let title = "Dream Room Generator";
 let description = "Generate your dream room in seconds.";
 let ogimage = "./public/vercel.svg"; // TODO change to image to embed twitter
-let sitename = "cyberkyodai.io";
+let sitename = "cyberkyodai.com";
 
 // set dynamic metadata based on route
 export const metadata = {

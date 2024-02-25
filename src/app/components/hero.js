@@ -3,6 +3,7 @@ import CyberButton from "../ui/cyber-button";
 import PageContent from "./page-content";
 import arrowDown from "../../../public/double-arrow-down.svg";
 import { useGlitch } from "react-powerglitch";
+import kazukichoImage from "../../../public/assets/images/KAZUKICHO.png";
 
 function Hero() {
   const glitchConfig = {
@@ -41,12 +42,19 @@ function Hero() {
   }
   return (
     <PageContent id="home">
-      <div className=" flex h-full w-full flex-col items-center justify-evenly">
-        <div className="flex w-full flex-col items-center">
+      <div className=" flex h-full w-full flex-col items-center justify-evenly ">
+        <div className="absolute top-0 z-0 flex h-full w-full blur-md">
+          <Image
+            src={kazukichoImage}
+            alt="Kazukicho"
+            style={{ objectFit: "cover", objectPosition: "top" }}
+          />
+        </div>
+        <div className="z-1 relative flex w-full flex-col items-center">
           <h1>Cyber Kyodai</h1>
           <h2>DUTY AND HONOR</h2>
         </div>
-        <div className="flex h-1/4 w-full flex-col items-center justify-evenly bg-slate-400">
+        <div className="flex h-1/4 w-full flex-col items-center justify-evenly ">
           <div className="flex  w-1/2 flex-col items-center justify-evenly lg:flex-row ">
             {/* <div className="m-1">
               <CyberButton title="MINT" /> 

@@ -4,9 +4,12 @@ import discordLogo from "../../../public/discord-logo.svg";
 
 function Footer() {
   return (
-    <footer className=" mx-10 h-[50vh] lg:mx-20 ">
-      <div className=" flex h-full flex-col  items-center justify-evenly bg-green-200 sm:items-start   ">
-        <div className="flex  bg-slate-500">
+    <footer className=" h-[20vh] bg-black px-10 lg:px-20">
+      <div className=" flex h-full flex-col  items-center justify-evenly  sm:items-start   ">
+        <div className="flex">
+          <h1>Cyber Kyodai</h1>
+        </div>
+        <div className="flex ">
           <div className="m-2 flex flex-row justify-end">
             <div className=" flex">
               <div>
@@ -34,11 +37,8 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="flex  bg-slate-400">
-          <h1>Cyber Kyodai</h1>
-        </div>
 
-        <div className="flex  bg-slate-500">
+        <div className="flex  ">
           <p>© 2023 Cyber Kyodai. All rights reserved.</p>
         </div>
       </div>

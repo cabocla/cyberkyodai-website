@@ -148,9 +148,10 @@ function MintDialog(props) {
   return (
     <div
       data-augmented-ui="border b-clip tr-clip tl-clip"
-      className={`${classes.mintDialog} flex h-4/6 w-11/12 flex-col items-center justify-evenly bg-slate-500 lg:w-3/5`}
+      className={`${classes.mintDialog} flex h-4/6 w-11/12 flex-col items-center justify-evenly lg:w-3/5`}
     >
-      <div className=" flex flex-col items-center justify-center bg-red-400 align-middle">
+      <div className="absolute h-full w-full  bg-black bg-opacity-25 backdrop-blur-lg "></div>
+      <div className="z-10 flex flex-col items-center justify-center  align-middle">
         <h1 className=" text-xl sm:text-3xl  xl:text-4xl">
           Pledge your Allegiance
         </h1>

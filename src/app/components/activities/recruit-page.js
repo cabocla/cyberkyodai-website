@@ -50,12 +50,12 @@ function RecruitPage() {
 
   return (
     <PageContent id="recruit">
-      <div className=" flex h-full w-full flex-col items-center bg-gray-200 lg:flex-row-reverse">
-        <div className="flex h-full w-full flex-col bg-green-200">
-          <div className="m-10 bg-orange-100">
+      <div className=" flex h-full w-full flex-col items-center  lg:flex-row-reverse">
+        <div className="flex w-full flex-col ">
+          <div className="m-10 mb-0 ">
             <h1>Recruit</h1>
           </div>
-          <div className="m-10 flex h-1/2  flex-col bg-red-300">
+          <div className="m-10 flex h-3/4  flex-col ">
             <p>
               Grow the family. Recruit more Kyodai & Shatei as your underlings.
             </p>
@@ -74,7 +74,7 @@ function RecruitPage() {
           </div>
         </div>
         {/* <CyberFrame reverse={true} /> */}
-        <div className="z-10 my-10 flex w-full justify-center  lg:w-3/4 ">
+        <div className="z-10  flex w-full justify-center  lg:w-3/4 ">
           <CarouselTest images={images} />
         </div>
       </div>

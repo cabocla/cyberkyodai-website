@@ -1,15 +1,17 @@
-import CyberFrame from "../../ui/cyber-frame";
+import Image from "next/image";
+import CyberFrame from "../../ui/cyber-frame-copy";
 import PageContent from "../page-content";
+import trainingImage from "../../../../public/assets/images/VR TRAINING.png";
 
 function TrainingPage() {
   return (
     <PageContent id="train">
-      <div className=" flex h-full w-full flex-col items-center bg-gray-200 lg:flex-row">
-        <div className="flex h-full w-full flex-col">
-          <div className="m-10 bg-orange-100">
+      <div className=" flex h-full w-full flex-col items-center  lg:flex-row">
+        <div className="flex  w-full flex-col">
+          <div className="m-10 mb-0 ">
             <h1>Train</h1>
           </div>
-          <div className="m-10 flex h-full flex-col bg-red-300">
+          <div className="m-10 flex h-full flex-col ">
             <p>
               Unlock the full potential of your Kyodais. Train your Kyodai to
               gain experience and level up.
@@ -21,7 +23,16 @@ function TrainingPage() {
             <br />
           </div>
         </div>
-        <CyberFrame />
+        <div className="flex h-3/4 w-full flex-col items-center  pb-20 lg:h-full lg:px-10  lg:py-36">
+          <CyberFrame>
+            <Image
+              className=" h-full w-full "
+              src={trainingImage}
+              alt="VR Training"
+              style={{ objectFit: "cover", objectPosition: "top" }}
+            />
+          </CyberFrame>
+        </div>
       </div>
     </PageContent>
   );

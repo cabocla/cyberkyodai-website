@@ -5,21 +5,19 @@ function CyberFrame(props) {
   return (
     <div
       data-augmented-ui={`
-      border
+      both
+      delegated-inlay
       ${props.reverse ? " bl-clip " : " br-clip "} 
       ${props.reverse ? " tr-clip" : " tl-clip "} 
-       t-clip-x
        `}
       className={`${
         props.reverse ? classes.cyberFrameRev : classes.cyberFrame
-      } flex h-full w-full flex-col items-center  justify-start bg-green-200  lg:mx-10  lg:w-full  `}
+      } flex  h-full flex-col items-center justify-start   lg:mx-10  lg:w-full  `}
     >
       <div
-        className={`flex flex-col items-center justify-end ${
-          props.reverse ? classes.cyberFrameRev : classes.cyberFrame
-        } ${props.frameColor ?? "bg-yellow-200"}`}
-      ></div>
-      <div className={` absolute my-1 flex h-full w-full flex-col `}>
+        data-augmented-ui-inlay
+        className={`  my-1 flex   flex-col items-center justify-center`}
+      >
         {props.children}
       </div>
     </div>

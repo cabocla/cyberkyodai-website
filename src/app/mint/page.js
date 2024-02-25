@@ -12,11 +12,11 @@ import { Web3 } from "web3";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MintedTokenImage from "./minted-image.js";
+import sakazukiImg from "../../../public/assets/images/SAKAZUKI.png";
 
 function MintPage() {
-  const web3 = new Web3(
-    new Web3.providers.HttpProvider(process.env.INFURA_RPC)
-  );
+  const infuraRPC = process.env.INFURA_RPC;
+  const web3 = new Web3(infuraRPC);
   const contract = new web3.eth.Contract(
     cyberKyodai.abi,
     process.env.KYODAI_GOERLI
@@ -301,6 +301,13 @@ function MintPage() {
           theme="light"
           hideProgressBar={true}
         />
+        <div className="absolute z-0 flex h-full w-full">
+          <Image
+            src={sakazukiImg}
+            alt="Sakazuki Ceremony"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
         {/* modal to show the minted kyodai image */}
         {txComplete ? (
           <MintedTokenImage
