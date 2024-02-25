@@ -19,8 +19,9 @@ const osake = localFont({
   variable: "--font-osake",
 });
 
-let title = "Dream Room Generator";
-let description = "Generate your dream room in seconds.";
+let title = "Cyber Kyodai";
+let description =
+  "A competitive and strategic on-chain game where Kyodais fight for dominance of Neo Tokyo underworld.";
 let ogimage = "./public/vercel.svg"; // TODO change to image to embed twitter
 let sitename = "cyberkyodai.com";
 
