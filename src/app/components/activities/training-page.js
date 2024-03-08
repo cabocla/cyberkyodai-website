@@ -7,7 +7,7 @@ function TrainingPage() {
   return (
     <PageContent id="train">
       <div className=" flex h-full w-full flex-col items-center  lg:flex-row">
-        <div className="flex  w-full flex-col">
+        <div className="flex  w-full flex-col items-center px-10">
           <div className="m-10 mb-0 ">
             <h2 className="text-5xl">Train</h2>
           </div>

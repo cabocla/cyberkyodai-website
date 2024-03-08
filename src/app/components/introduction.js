@@ -65,7 +65,7 @@ function Introduction() {
               Your browser does not support the video tag.
             </video>
           </div>
-          <div className="z-10 mx-5 mt-10 flex h-3/4 flex-col justify-center ">
+          <div className="z-10 mx-5 mt-10 flex h-3/4 flex-col justify-center px-28">
             <p className=" text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
               Decades after oppression from the government, new era dawns as the
               Kyodais resurges to seize control over the enigmatic Neo Tokyo

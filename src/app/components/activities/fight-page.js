@@ -8,7 +8,7 @@ function FightingPage() {
   return (
     <PageContent id="fight">
       <div className=" flex h-full w-full flex-col items-center  lg:flex-row">
-        <div className="flex  w-full flex-col ">
+        <div className="flex  w-full flex-col items-center px-10">
           <div className="-100 m-10 mb-0">
             <h2 className="text-5xl">Fight</h2>
           </div>

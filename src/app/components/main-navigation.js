@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import twitterLogo from "../../../public/twitter-logo.svg";
 import discordLogo from "../../../public/discord-logo.svg";
+import cyberKyodaiLogo from "../../../public/assets/images/CYBERKYODAI LOGO.png";
 
 const menuItems = [
   // { title: "MINT", url: "/mint" },
@@ -28,9 +29,9 @@ function MainNavigation() {
   return (
     <header className="sticky top-0 z-30 w-full">
       <nav className="  w-vw flex h-[8vh] flex-row items-center justify-between bg-black">
-        <div className="ml-5 flex   ">
+        <div className="ml-5 flex  h-full w-1/12 ">
           <Link href="/">
-            <h1 className="mx-5 ">Cyber Kyodai</h1>
+            <Image src={cyberKyodaiLogo} alt="Cyber Kyodai" />
           </Link>
         </div>
 

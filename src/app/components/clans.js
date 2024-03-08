@@ -1,6 +1,6 @@
 import Image from "next/image";
 import PageContent from "./page-content";
-import clanLogos from "../../../public/assets/images/clan-logos.png";
+import clanLogos from "../../../public/assets/images/CLAN MAP.jpg";
 
 function Clans() {
   return (
@@ -9,7 +9,7 @@ function Clans() {
         <div className="flex flex-col lg:h-[40vw] lg:w-[40vw]">
           <Image src={clanLogos} alt="Cyber Kyodai Clan Logos" />
         </div>
-        <div className="mx-10 flex h-full flex-col justify-center lg:w-[50vw]">
+        <div className="mx-10 flex h-full flex-col justify-center px-20 lg:w-[50vw]">
           <h2 className="text-5xl">Clans</h2>
           <p>
             Within the depths of Neo Tokyo underbelly, intricate power struggle

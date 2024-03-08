@@ -4,6 +4,7 @@ import PageContent from "./page-content";
 import arrowDown from "../../../public/double-arrow-down.svg";
 import { useGlitch } from "react-powerglitch";
 import kazukichoImage from "../../../public/assets/images/KAZUKICHO.png";
+import cyberKyodaiLogo from "../../../public/assets/images/CYBERKYODAI LOGO.png";
 
 function Hero() {
   const glitchConfig = {
@@ -50,9 +51,13 @@ function Hero() {
             style={{ objectFit: "cover", objectPosition: "top" }}
           />
         </div>
-        <div className="z-1 relative flex w-full flex-col items-center">
-          <h1>Cyber Kyodai</h1>
-          <h2>DUTY AND HONOR</h2>
+        <div className="z-1 relative flex w-1/2 flex-col items-center ">
+          <Image
+            src={cyberKyodaiLogo}
+            alt="Cyber Kyodai Logo"
+            style={{ objectFit: "cover", objectPosition: "top" }}
+          />
+          <h2 className=" text-4xl">DUTY AND HONOR</h2>
         </div>
         <div className="flex h-1/4 w-full flex-col items-center justify-evenly ">
           <div className="flex  w-1/2 flex-col items-center justify-evenly lg:flex-row ">
