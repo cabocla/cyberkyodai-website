@@ -50,8 +50,8 @@ function Introduction() {
           />
         </div> */}
         <div className=" z-10 h-full w-full justify-end ">
-          <div className=" flex h-2/6 items-center justify-center px-5  lg:h-1/4 ">
-            <h2 className="text-4xl">Welcome to Neo Tokyo</h2>
+          <div className=" flex h-2/6 items-center justify-center  px-5 lg:h-1/4 ">
+            <h2 className=" text-2xl sm:text-4xl">Welcome to Neo Tokyo</h2>
           </div>
           <div className="lg:h-1/8 absolute flex  h-10 w-full ">
             <video
@@ -65,7 +65,7 @@ function Introduction() {
               Your browser does not support the video tag.
             </video>
           </div>
-          <div className="z-10 mx-5 mt-10 flex h-3/4 flex-col justify-center px-28">
+          <div className="z-10 mx-5 flex h-3/4 flex-col justify-center  lg:px-28">
             <p className=" text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
               Decades after oppression from the government, new era dawns as the
               Kyodais resurges to seize control over the enigmatic Neo Tokyo
