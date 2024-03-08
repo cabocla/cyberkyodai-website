@@ -29,9 +29,13 @@ function MainNavigation() {
   return (
     <header className="sticky top-0 z-30 w-full">
       <nav className="  w-vw flex h-[8vh] flex-row items-center justify-between bg-black">
-        <div className="ml-5 flex  h-full w-1/12 ">
+        <div className="ml-5 flex w-1/2  sm:w-1/4 md:w-1/6  xl:w-1/12">
           <Link href="/">
-            <Image src={cyberKyodaiLogo} alt="Cyber Kyodai" />
+            <Image
+              src={cyberKyodaiLogo}
+              alt="Cyber Kyodai"
+              style={{ objectFit: "cover" }}
+            />
           </Link>
         </div>
 

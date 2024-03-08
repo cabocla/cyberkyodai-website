@@ -51,13 +51,13 @@ function Hero() {
             style={{ objectFit: "cover", objectPosition: "top" }}
           />
         </div>
-        <div className="z-1 relative flex w-1/2 flex-col items-center ">
+        <div className="z-1 relative flex w-3/4 flex-col items-center md:w-1/2 ">
           <Image
             src={cyberKyodaiLogo}
             alt="Cyber Kyodai Logo"
             style={{ objectFit: "cover", objectPosition: "top" }}
           />
-          <h2 className=" text-4xl">DUTY AND HONOR</h2>
+          <h2 className=" sm:text-4xl">DUTY AND HONOR</h2>
         </div>
         <div className="flex h-1/4 w-full flex-col items-center justify-evenly ">
           <div className="flex  w-1/2 flex-col items-center justify-evenly lg:flex-row ">
