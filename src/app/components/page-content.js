@@ -1,10 +1,12 @@
 import bgClass from "../ui/bg-image.module.css";
 
 function PageContent(props) {
+  // ${bgClass.bgImage}
   return (
     <div
       id={props.id}
-      className={`${bgClass.bgImage} flex h-screen flex-col items-center justify-center bg-black align-middle `}
+      className={`
+      flex h-screen flex-col items-center justify-center align-middle `}
     >
       <div className="h-[8vh]"></div>
       {props.children}

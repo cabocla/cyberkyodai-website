@@ -27,7 +27,14 @@ body {
     rgb(var(--background-start-rgb));
   font-family: var(--font-vt323);
   font-size: larger;
+  background-image: url("../../public/assets/images/BACKGROUND WEB 2.png");
+  /* background-repeat: no-repeat; */
+  background-attachment: fixed;
+  background-size: contain;
+  background-color: black;
+  background-position: center center;
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -66,4 +73,10 @@ h2 {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: black;
+}
+
+@media screen and (min-width: 1600px) {
+  body {
+    background-size: cover;
+  }
 }
