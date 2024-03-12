@@ -44,13 +44,14 @@ function Hero() {
   return (
     <PageContent id="home">
       <div className=" flex h-full w-full flex-col items-center justify-evenly ">
-        <div className="absolute top-0 z-0 flex h-full w-full blur-md">
+        {/* <div className="absolute top-0 z-0 flex h-full w-full blur-md">
           <Image
             src={kazukichoImage}
             alt="Kazukicho"
             style={{ objectFit: "cover", objectPosition: "top" }}
           />
         </div>
+        <div className="z-1 absolute top-0  flex h-full w-full bg-blue-800 bg-opacity-25"></div> */}
         <div className="z-1 relative flex w-3/4 flex-col items-center md:w-1/2 ">
           <Image
             src={cyberKyodaiLogo}
