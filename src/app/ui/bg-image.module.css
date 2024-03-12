@@ -1,3 +1,4 @@
 .bgImage {
   background-image: url("../../../public/assets/images/BACKGROUND WEB.png");
+  background-size: contain;
 }
